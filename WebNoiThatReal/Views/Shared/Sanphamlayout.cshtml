@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title meDecor</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/script.js"></script>
+
+    <script src="~/Content/fontawesome/all.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Trangchu", "Home")"><img src="~/Content/logo.png" style="height:90px;width:170px;margin-left:-50px " />  </a>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse" style="margin-left: 200px; font-size: 17px; margin-top: 20px; width: 1500px ">
+
+                <ul id="menu" class="nav navbar-nav" style="text-align: center; font-family:'';">
+
+                    <li>@Html.ActionLink("TRANG CHỦ", "Trangchu", "Home")</li>
+                    <li>@Html.ActionLink("NỘI THẤT", "Index", "Product")</li>
+                    <li>@Html.ActionLink("GIỚI THIỆU", "GioiThieu", "Home")</li>
+                    <li>@Html.ActionLink("LIÊN HỆ", "LienHe", "Home")</li>
+                    <li>@Html.ActionLink("DỊCH VỤ", "DichVu", "Home")</li>
+                    <li>
+                        <a>NGƯỜI DÙNG <span class="arrow arrow-down"></span>  </a>
+                        <ul class="dropdown_menu">
+                            <li><a style="color:silver;font-size:15px" href="/Customers/Register"><span class="glyphicon glyphicon-user"></span> ĐĂNG KÍ</a></li>
+                            <li><a style="color: silver; font-size: 15px" href="/Customers/Login"><span class="glyphicon glyphicon-log-in"></span> ĐĂNG NHẬP</a></li>
+                            <li><a style="color: silver; font-size: 15px" href="@Url.Action("LogOutUser","Customers") ">ĐĂNG XUẤT</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li>
+                        <span>
+                            <a href="/ShoppingCart/ShowCart">
+                                <img src="@Url.Content("~/Content/Images/Cart.png") " style="height:30px;width:30px;margin-top:10px;" />
+                                @Html.Action("BagCart", "ShoppingCart")
+                            </a>
+                        </span>
+
+                    </li>
+
+                    <li class="format-hello" style="font-family:'Comic Sans MS';font-size:15px;padding-top:40px;color:white;">
+                        @if (Session["UserNameCus"] == null)
+                        {
+            <span>Khách <i class="fas fa-meh-blank"></i></span> }
+        else
+        {
+            <span>Chào @Session["UserNameCus"] <i class="fas fa-laugh"></i></span>}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    @*//category*@
+    <div class="container-fluid body-content" style="padding-left : 178px">
+
+
+        <div class="row">
+
+            <div class="col-md-2" style="font-family:Bahnschrift;font-size:x-large;padding-left:50px;padding-top:50px">
+                @{ Html.RenderAction("CategoryParital", "Categories"); }
+
+            </div>
+            <div class="col-md-10" id="div-content">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#menu > li').hover(function () {
+                $(this).find('.dropdown_menu').stop(true, true).slideDown();
+            }, function () {
+                $(this).find('.dropdown_menu').stop(true, true).slideUp();
+            });
+
+            $('.dropdown_menu > li').hover(function () {
+                $(this).find('.submenu').stop(true, true).slideDown();
+            }, function () {
+                $(this).find('.submenu').stop(true, true).slideUp();
+            });
+        });
+
+    </script>
+    <style>
+
+        /*thanh scrollbar chi tiet sp*/
+        /*.product-details {
+            width: 100%;*/ /* Hoặc bất kỳ kích thước nào bạn muốn */
+            /*height: 400px;*/ /* Chiều cao cố định cho phần tử */
+            /*overflow-y: scroll;*/ /* Luôn hiển thị scrollbar dọc */
+            /*overflow-x: hidden;*/ /* Ẩn scrollbar ngang (nếu có) */
+        /*}*/
+
+
+        /* Đặt khoảng cách giữa các mục trong thanh điều hướng */
+        #menu li {
+            margin-right: 15px; /* Khoảng cách giữa các mục */
+        }
+
+            /* Xóa khoảng cách phải của mục cuối cùng */
+            #menu li:last-child {
+                margin-right: 0;
+            }
+
+
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu {
+            list-style: none;
+            height: 48px;
+        }
+
+            #menu li {
+                text-align: left;
+                color: #fff;
+            }
+
+                #menu li a {
+                    text-decoration: none;
+                    font-size: 16px;
+                    display: block;
+                    padding: 15px;
+                    background-color: black;
+                }
+
+            #menu > li {
+                float: left;
+                border-right: 1px solid black;
+                position: relative;
+            }
+
+                #menu > li > ul.dropdown_menu {
+                    position: absolute;
+                    list-style: none;
+                    display: none;
+                    width: 200px;
+                }
+
+                #menu > li:hover > a {
+                    background-color: none;
+                }
+
+                #menu > li:hover > ul.dropdown_menu {
+                    z-index: 100;
+                }
+
+        ul.dropdown_menu > li {
+            position: relative;
+        }
+
+            ul.dropdown_menu > li > ul.submenu {
+                position: absolute;
+                display: none;
+                list-style: none;
+                width: 200px;
+                left: 200px;
+            }
+
+            ul.dropdown_menu > li:hover > a {
+                background-color: #5C5C5C !important;
+            }
+
+            ul.dropdown_menu > li:hover > ul.submenu {
+                z-index: 100;
+            }
+
+        ul.submenu > li:hover > a {
+            background-color: #5C5C5C !important;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        .arrow-down {
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 7px solid #fff;
+        }
+
+        .arrow-right {
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 7px solid #fff;
+        }
+    </style>
+</body>
+</html>
+
+
+
+
+

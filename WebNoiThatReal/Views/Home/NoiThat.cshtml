@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "NoiThat";
+    Layout = "~/Views/_MasterLayout.cshtml";
+}
+<link href="~/Content/StyleNoiThat.css" rel="stylesheet" />
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: black; text-align: center;  height: 70px; margin-bottom:-50px; margin-top: -20px;">
+    <div class="container">
+        <div class="navbar-header">
+            @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">Ẩn
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                </button>*@
+        </div>
+    </div>
+    <div class="navbar-collapse collapse" style="background-color:black;">
+        <ul class="nav navbar-nav">
+            <ul id="nav">
+                <li><a href="Trangchu">Trang chủ</a></li>
+                <li><a href="">Giới thiệu</a></li>
+                <li><a href="NoiThat">Nội thất</a></li>
+                <li><a href="">Dịch vụ</a></li>
+                <li><a href="">Dự án</a></li>
+                <li><a href="">Liên hệ </a></li>
+
+
+
+
+
+                <li><a href="/LoginUser/Register"><span class="glyphicon glyphicon-user"></span>SignUp</a></li>
+                <li><a href="/LoginUser/Index"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+                <li>
+
+
+
+                    <span>
+
+
+
+                        <a href="/ShoppingCart/ShowCart">
+
+
+
+                            <img src="@Url.Content("~/Content/Images/Cart.png") " style="height:30px;width:30px;margin-top:10px;" />
+                            @Html.Action("BagCart", "ShoppingCart")
+                        </a>
+                    </span>
+
+
+
+                </li>
+            </ul>
+            @*<ul>
+                    <li class="format-hello">
+                        @if (Session["NameUser"] == null)
+                        {
+                            <span>Hello</span>
+                        }
+                        else
+                        {
+                            <span> @Session["NameUser"] </span>
+                        }
+                    </li>
+                </ul>*@
+
+
+
+        </ul>
+
+
+
+
+    </div>
+</div>
+        </div>
+<div id="slider">
+    <div id="images">
+        <div class="images-center"></div>
+        <div class="images-left"></div>
+    </div>
+</div>
+<div id="content">
+    <div id="about">
+        <div class="picture">
+            <img class="picture-img" src="~/Content/Images/sadasd.jpeg" alt="picture" />
+            <h1 class="picture-name">PENTHOUSE MINH KHÔI-ĐN</h1>
+            <p class="show">Công trình một vẻ đẹp vượt thời gian.</p>
+        </div>
+
+        <div class="picture">
+            <img class="picture-img" src="~/Content/Images/sadasd.jpeg" alt="picture" />
+            <h1 class="picture-name">PENTHOUSE MINH KHÔI-ĐN</h1>
+            <p class="show"> Công trình một vẻ đẹp vượt thời gian.</p>
+        </div>
+
+        <div class="picture">
+            <img class="picture-img" src="~/Content/Images/sadasd.jpeg" alt="picture" />
+            <h1 class="picture-name">PENTHOUSE MINH KHÔI-ĐN</h1>
+            <p class="show">Công trình một vẻ đẹp vượt thời gian.</p>
+        </div>
+
+        <div class="picture">
+            <img class="picture-img" src="~/Content/Images/sadasd.jpeg" alt="picture" />
+            <h1 class="picture-name">PENTHOUSE MINH KHÔI-ĐN</h1>
+            <p class="show">Công trình một vẻ đẹp vượt thời gian.</p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="text">
+        <p></p>
+        <p></p>
+        <p></p>
+    </div>
+    <div class="text" style="position:relative;left:500px;top:2px;">
+
+
+        <h1 class="contact-1">Đức Thịnh-Thảo Điền-Sài Gòn</h1>
+        <h2 class="contact-1">2312321321321</h2>
+        <h2 class="contact-1">215-Thu Thua</h2>
+    </div>
+    <div class="text" style="position:relative;left:500px;top:2px;">
+        <h1 class="contact">Đức Thịnh-Thảo Điền-Sài Gòn</h1>
+        <h2 class="contact-phone">2312321321321</h2>
+        <h2 class="contact-add">215-Thu Thua</h2>
+    </div>
+    <div class="text" style="position:relative;right:500px;top:-200px;">
+        <h1 class="contact">Đức Thịnh-Thảo Điền-Sài Gòn</h1>
+        <h2 class="contact">2312321321321</h2>
+        <h2 class="contact">215-Thu Thua</h2>
+    </div>
+    <div class="text" style="position:relative;right:500px;top:-200px;">
+        <h1 class="contact">Đức Thịnh-Thảo Điền-Sài Gòn</h1>
+        <h2 class="contact">2312321321321</h2>
+        <h2 class="contact">215-Thu Thua</h2>
+
+    </div>
+</div>
+</div>

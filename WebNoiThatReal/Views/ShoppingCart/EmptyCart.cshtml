@@ -1,0 +1,25 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/Mainlayout.cshtml";
+}
+
+
+
+<div style="margin-top:100px" class="container">
+    
+
+
+    <img style="width:25%;margin-left:380px ;" src="~/Content/Trangtri/emptycart.jpg" alt="">
+    <table>
+        <tr>
+            <h3 style="font-family:Bahnschrift;margin-left:300px">Có vẻ như giỏ hàng của bạn đang trống..</h3>
+        </tr>
+        <tr>
+            <a style="margin-left: 440px" href="@Url.Action("Index","Product")">
+                <button class="btn btn-primary btn-md">MUA SẮM NGAY</button>
+            </a>
+        </tr>
+        
+    </table>
+    
+</div>

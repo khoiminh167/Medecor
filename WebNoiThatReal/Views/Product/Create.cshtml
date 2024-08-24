@@ -1,0 +1,61 @@
+﻿@model WebNoiThatReal.Models.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Mainlayout.cshtml";
+
+}
+<link href="~/Content/SPStyle.css" rel="stylesheet" />
+<h2 style="padding-top:50px;margin-left:350px">Tạo sản phẩm</h2>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="table-bordered" style="margin-left:350px">
+        <tr>
+            <td>@Html.LabelFor(m => m.NamePro)</td>
+            <td>@Html.EditorFor(m => m.NamePro)</td>
+        </tr>
+        <tr>
+
+            <td>@Html.LabelFor(m => m.Price)</td>
+            <td>@Html.EditorFor(m => m.Price)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.Category)</td>
+            <td>
+
+                @Html.DropDownListFor(m => m.IDCate, (SelectList)ViewBag.listCategory)
+
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.DecriptionPro)</td>
+            <td>
+                @Html.TextAreaFor(m => m.DecriptionPro, new { @class = "ckeditor" })
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>@Html.LabelFor(m => m.ImagePro)</td>
+            <td>
+                <img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="file" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+                <input type="submit" value="Tạo mới" />
+
+            </td>
+        </tr>
+
+
+    </table>
+}
+
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('DecriptionPro');
+</script>

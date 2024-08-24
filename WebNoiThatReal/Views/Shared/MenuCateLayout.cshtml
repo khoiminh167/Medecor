@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    
+    <div  class="container-fluid body-content">
+        <div class="row">
+            <div class="col-md-2">
+                @{ Html.RenderAction("CategoryParital", "Categories"); }
+
+            </div>
+            <div class="col-md-5" id="div-content">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+    
+    
+</body>
+
+</html>

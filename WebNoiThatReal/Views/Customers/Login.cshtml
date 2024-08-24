@@ -1,0 +1,51 @@
+﻿@model WebNoiThatReal.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<link href="~/Content/StyleDangKi.css" rel="stylesheet" />
+<script src="~/Content/fontawesome/all.js"></script>
+<br />
+
+<div class="center">
+    <h2 style="text-align:center; margin-top:15px; font-family:Bahnschrift">ĐĂNG NHẬP </h2>
+
+    @using (Html.BeginForm("LoginAccount", "Customers", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="txt_field">
+            @Html.LabelFor(m => m.UserNameCus)
+            @Html.TextBoxFor(m => m.UserNameCus)
+            @Html.ValidationMessageFor(m => m.UserNameCus, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="txt_field">
+            @Html.LabelFor(m => m.PasswordCus)
+            @Html.PasswordFor(m => m.PasswordCus)
+            @Html.ValidationMessageFor(m => m.PasswordCus, "", new { @class = "text-danger" })
+            @if (ViewBag.ErrorLogin != null)
+            {
+                <span style="color:red; margin-left: 30px; font-family:Bahnschrift"> @ViewBag.ErrorLogin</span>
+            }
+        </div>
+
+        <input type="submit" value="Đăng Nhập" class="btn btn-primary" />
+
+        <div class="signup_link">
+            Chưa có tài khoản? <a href="@Url.Action("Register", "Customers")">Đăng Kí</a>
+        </div>
+    }
+</div>
+<footer style="margin-top:400px;margin-left:1300px">
+    <div>
+        <a href="/Admin/AdminPage">
+            <span style="color:black">
+                <i class="fas fa-unlock-alt"></i>
+            </span>
+        </a>
+    </div>
+</footer>
+

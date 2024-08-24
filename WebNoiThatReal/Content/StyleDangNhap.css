@@ -1,0 +1,22 @@
+﻿body {
+    background: url('images/newfolder1/maxresdefault (1).jpg');
+    padding-top: 200px;
+    background-color: white;
+    text-align: center;
+}
+
+h2 {
+    color: aqua red;
+    margin-bottom: 20px;
+}
+
+input {
+    margin-bottom: 5px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+button {
+    width: 128px;
+    height: 20px;
+}

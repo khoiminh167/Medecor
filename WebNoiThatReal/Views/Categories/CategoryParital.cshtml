@@ -1,0 +1,43 @@
+﻿@using WebNoiThatReal.Models
+
+
+@model List<Category>
+
+<style>
+    #div-u {
+        padding-top: 0px;
+        margin-top: 10px;
+        
+        text-decoration: none;
+    }
+
+    .div-cate {
+        height: 40px;
+        width: 100%;
+    }
+
+    a {
+        color: black;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+</style>
+<h2 style="font-family:Bahnschrift;">DANH MỤC</h2>
+<hr style="height:1px;border:none;color:#333;background-color:#333;" />
+<a style="font-size:25px " href="/Product/Index ">Tất cả sản phẩm</a>
+<ul style="list-style-type:none;" id="div-u">
+    @{
+        foreach (var item in Model)
+        {
+            <li class="div-cate">
+                @Html.ActionLink(item.NameCate, "Index", "Product", new { category = item.IDCate.Trim() }, "")
+
+            </li>
+
+        }
+    }
+
+</ul>
+

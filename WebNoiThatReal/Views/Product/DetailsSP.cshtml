@@ -1,0 +1,188 @@
+﻿@model WebNoiThatReal.Models.Product
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/Sanphamlayout.cshtml";
+}
+
+<div class="product-details">
+    <!-- Hình ảnh sản phẩm -->
+    <div class="product-image">
+        <img src="@Url.Content(Model.ImagePro)" alt="Image of @Model.NamePro" />
+    </div>
+
+    <!-- Thông tin sản phẩm -->
+    <div class="product-info">
+        <h2>@Model.NamePro</h2>
+        <p style="font-family:Bahnschrift; font-size: 25px"><strong>Giá:</strong> @Model.PriceFormatted Đ</p>
+
+        <!-- Form chọn số lượng và nút Mua Hàng -->
+        <form action="/ShoppingCart/AddToCart" method="post">
+            <input type="hidden" name="id" value="@Model.ProductID" />
+            <label for="quantity"><strong>Số lượng:</strong></label>
+            <div class="quantity-container">
+                <button type="button" class="quantity-button" id="decrease">-</button>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="100" />
+                <button type="button" class="quantity-button" id="increase">+</button>
+            </div>
+            <button type="submit" class="btn btn-success" id="buy-now">
+                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
+            </button>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+<!-- Mô tả sản phẩm -->
+<div class="product-description">
+    <p><strong>Mô tả:</strong></p>
+    @Html.Raw(Model.DecriptionPro)
+</div>
+
+<style>
+    .product-details {
+        display: flex;
+        flex-direction: row; /* Sắp xếp các phần tử theo chiều ngang */
+        align-items: flex-start; /* Căn chỉnh các phần tử theo chiều dọc từ trên xuống dưới */
+        padding: 0px;
+        margin-top: 70px;
+        padding-right: 150px;
+    }
+
+    .product-image {
+        margin-right: 50px; /* Khoảng cách giữa hình ảnh và thông tin sản phẩm */
+    }
+
+        .product-image img {
+            border-radius: 5px;
+            width: 400px; /* Chiều rộng của hình ảnh */
+            height: auto; /* Chiều cao tự động để giữ tỷ lệ */
+        }
+    .product-description {
+        text-align: left;
+        
+        padding-right: 250px;
+    }
+
+    .product-info {
+        flex: 1; /* Chiếm một phần không gian bằng nhau với .product-image */
+        text-align: left; /* Căn trái nội dung thông tin sản phẩm */
+        margin-right: 50px;
+    }
+
+        .product-info h2 {
+            margin-top: 0px;
+        }
+
+        .product-info form {
+            display: flex;
+            flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+            margin-top: 100px;
+            align-items: flex-start; /* Căn chỉnh các phần tử theo chiều ngang từ trái sang phải */
+        }
+
+            .product-info form label {
+                margin-bottom: 5px; /* Khoảng cách giữa label và input */
+            }
+
+
+            .product-info form input[type="number"] {
+                width: 60px;
+                text-align: center;
+                margin-bottom: 10px; /* Khoảng cách giữa input và nút bấm */
+            }
+
+            .product-info form button {
+                align-self: left; /* Căn giữa nút bấm */
+            }
+
+    .quantity-container {
+        display: flex;
+        align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+        margin-bottom: 10px; /* Khoảng cách giữa các phần tử */
+    }
+
+    .quantity-button {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 40px; /* Chiều rộng của nút */
+        height: 40px; /* Chiều cao của nút */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px; /* Kích thước chữ trong nút */
+        cursor: pointer;
+        user-select: none;
+        margin: 0; /* Loại bỏ khoảng cách mặc định của các nút */
+    }
+
+        .quantity-button:hover {
+            background-color: #ddd;
+        }
+
+    #quantity {
+        width: 60px; /* Chiều rộng của ô số lượng */
+        height: 40px; /* Chiều cao của ô số lượng để khớp với các nút */
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        -webkit-appearance: none; /* Loại bỏ mũi tên trên trình duyệt Webkit */
+        appearance: none; /* Loại bỏ mũi tên trên trình duyệt khác */
+        margin: 0; /* Loại bỏ khoảng cách mặc định */
+    }
+
+    #buy-now {
+        margin-top: 10px; /* Khoảng cách giữa ô số lượng và nút Mua Hàng */
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    /* Loại bỏ mũi tên lên xuống trong ô số lượng */
+    input[type="number"] {
+        -webkit-appearance: none; /* Loại bỏ mũi tên trên trình duyệt Webkit (Chrome, Safari) */
+        -moz-appearance: textfield; /* Loại bỏ mũi tên trên Firefox */
+        appearance: none; /* Loại bỏ mũi tên trên các trình duyệt khác */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 60px; /* Chiều rộng của ô số lượng */
+        height: 40px; /* Chiều cao của ô số lượng để khớp với các nút */
+        text-align: center;
+        margin: 0; /* Loại bỏ khoảng cách mặc định */
+        padding: 0; /* Loại bỏ padding mặc định */
+    }
+
+        /* Loại bỏ mũi tên lên xuống từ Firefox */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+</style>
+
+<script>
+    document.getElementById('decrease').addEventListener('click', function () {
+        var quantityInput = document.getElementById('quantity');
+        var currentValue = parseInt(quantityInput.value, 10);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    document.getElementById('increase').addEventListener('click', function () {
+        var quantityInput = document.getElementById('quantity');
+        var currentValue = parseInt(quantityInput.value, 10);
+        if (currentValue < 100) {
+            quantityInput.value = currentValue + 1;
+        }
+    });
+
+
+
+
+</script>
+

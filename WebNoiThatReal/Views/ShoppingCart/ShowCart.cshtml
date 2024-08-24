@@ -1,0 +1,157 @@
+﻿@model WebNoiThatReal.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/Mainlayout.cshtml";
+}
+<style>
+    .Menucheck {
+        border-collapse: separate;
+        border-spacing: 5px;
+        width: 700px;
+        height: 400px;
+        background-image: url(/Content/Trangtri/mailpic.jpg);
+        background-size: 100%;
+        padding-left: 120px;
+        padding-top: 220px;
+    }
+</style>
+
+<h2 style="font-family:Bahnschrift;padding-top:50px">GIỎ HÀNG </h2>
+<a href="@Url.Action("Index","Product")"> TIẾP TỤC MUA SẮM  </a>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm </th>
+                <th>Hình Ảnh  </th>
+                <th>Giá </th>
+                <th>Số lượng </th>
+                <th>Thành tiền </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                Decimal total = item._quantity * (decimal)item._product.Price.Value;
+                <tr>
+                    <td>@Html.DisplayFor(model => item._product.NamePro)</td>
+                    <td><img src="@Url.Content(item._product.ImagePro)" height="45" width="70" /> </td>
+                    <td>@item._product.Price.Value.ToString("N0") Đ</td>
+                    <td>
+                        @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item._product.ProductID" name="idPro" />
+                            <input type="number" value="@item._quantity" name="cartQuantity" />
+                            <input type="submit" value="Update" />
+                        }
+                    </td>
+                    <td>@total.ToString("N0") Đ</td>
+                    <td>
+                        <a href="/ShoppingCart/RemoveCart/@item._product.ProductID">Xóa</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6" style="text-align:right;font-size:20px">Tổng Cộng: @Model.Total_money().ToString("N0") Đồng</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="4">
+                </td>
+            </tr>
+        </tfoot>
+        <div>
+            @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+            {
+                <table class="Menucheck">
+
+                    <tr>
+                        <td>Phone:</td>
+                        <td><input type="number" name="PhoneCustomer" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ giao hàng:</td>
+                        <td><input type="text" name="AddressDelivery" required</td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <a href="@Url.Action("Register", "Customers")" class="btn btn-success">Trở thành thành viên </a>
+                        </td>
+                        <td>
+                            <input type="submit" value="ĐẶT HÀNG" class="btn btn-success" />
+
+                        </td>
+
+                    </tr>
+
+
+                </table>
+            }
+
+        </div>
+
+    </table>
+}
+else
+{
+    @Html.Partial("EmptyCart")
+}
+<div>
+    <h2 style="text-align:Center;font-family:Bahnschrift">LƯU Ý KHI ĐẶT HÀNG</h2>
+    <hr />
+    <ul>
+        <li style="font-family:Bahnschrift;font-size:25px">
+            1. Quy định thời gian giao hàng:
+        </li>
+        <li style="font-family:Bahnschrift">
+
+            – Giao hàng tối thiểu sau 1 ngày sau khi khách thanh toán (Đối với mặt hàng sản xuất theo yêu cầu của khách hàng, thời gian giao hàng có thể tùy thuộc vào quy trình sản xuất).
+            <br />
+            – Không giao hàng vào chủ nhật, ngày nghỉ lễ theo quy định nhà nước, ngày thứ 7 cuối cùng của tháng.
+            <br />
+            – Ngày giao hàng có thể thay đổi trong trường hợp thiếu hàng tồn, hoặc do điều kiện thời tiết.
+            <br />
+            – Quý khách vui lòng báo trước 1 ngày nếu có trường hợp thay đổi ngày giao hàng.
+            <br />
+            – Thời gian giao hàng linh hoạt tùy thuộc vào tình huống trong ngày giao hàng và lưu lượng giao thông.
+            <br />
+            <br />
+        <li style="font-family:Bahnschrift;font-size:25px">
+            2. Quy định kiểm tra hàng hóa khi giao nhận:
+        </li>
+        <li style="font-family:Bahnschrift">
+            – Khách hàng có nhiệm vụ phải kiểm tra hàng hóa sau khi nhân viên giao hàng bung thùng.
+            <br />
+            – Đối với mặt hàng như Giường, Tủ áo… phải lắp đặt, sau khi nhân viên lắp đặt xong khách hàng phải kiểm tra tổng thể lại và yêu cầu chỉnh sửa ngay lúc đó.
+            <br />
+            – Sau khi kiểm tra hàng Ok khách hàng ký xác nhận vào giấy giao hàng đồng nghĩa là hàng hóa không có vấn đề gì về lỗi kỹ thuật do nhà sản xuất.
+            <br />
+            <br />
+        <li style="font-family:Bahnschrift;font-size:25px">
+            3. Quy định phạm vi giao hàng và chi phí giao hàng:
+        </li>  
+        – Trường hợp giao hàng vào tòa nhà cao tầng có thang máy có thể vận chuyển hàng thì miễn phí vận chuyển.
+        <br />
+        – Trường hợp giao hàng bằng thang bộ, chỉ có thể giao hàng đến tầng 5, Theo tùy hạng mục sản phẩm khách hàng có thể tốn chi phí phát sinh (Ví dụ : những sản phẩm lớn, nặng).
+        <br />
+        – Nếu hách hàng sống trong những tòa nhà cao tầng thì khách hàng phải đăng ký với bảo vệ tòa nhà để nhận viên giao hàng, giao hàng thuận lợi và đúng thời gian. Trường hợp vận chuyển cần phải thuê trang thiết bị trong quá trình giao hàng như thang, xe nâng thì khách hàng phải chịu chi phí thuê đó.
+        <br />
+        </li>
+
+    </ul>
+</div>
+<br /><br />
+<hr style="height:1px;border:none;color:#333;background-color:#333;" />
+<div class="footer" style="opacity:0.6;text-align:center">
+    <h3> <h4>Copyright © 2022 MeDECOR Interior Design. All Rights Reserved. </h4> Policy | Data Privacy | Sitemap</h3>
+</div>
+
+
+

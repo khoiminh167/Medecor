@@ -1,0 +1,90 @@
+﻿@model WebNoiThatReal.Models.Customer
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<link href="~/Content/StyleDangKi.css" rel="stylesheet" />
+<link href="~/Content/FieldRequired.css" rel="stylesheet" />
+<div class="center">
+    @using (Html.BeginForm("Register", "Customers", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <h1>ĐĂNG KÍ</h1>
+        <div>
+            @if (ViewBag.ErrorRegister != null)
+            {
+                <span style="padding-left: 5px; color: red; font-family: Bahnschrift">@ViewBag.ErrorRegister</span>
+            }
+        </div>
+
+        <div class="txt_field">
+
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.UserNameCus)</th>
+                    <td>@Html.TextBoxFor(m => m.UserNameCus)</td>
+                    <td>@Html.ValidationMessageFor(m => m.UserNameCus)</td>
+                </tr>
+            </table>
+           
+        </div>
+        <div class="txt_field">
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.NameCus)</th>
+                    <td>@Html.TextBoxFor(m => m.NameCus)</td>
+                    <td>@Html.ValidationMessageFor(m => m.NameCus)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="txt_field">
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.PasswordCus)</th>
+                    <td>@Html.PasswordFor(m => m.PasswordCus)</td>
+                    <td>@Html.ValidationMessageFor(m => m.PasswordCus)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="txt_field">
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.ConfirmPass)</th>
+                    <td>@Html.PasswordFor(m => m.ConfirmPass)</td>
+                    <td>@Html.ValidationMessageFor(m => m.ConfirmPass)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="txt_field">
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.PhoneCus)</th>
+                    <td>@Html.TextBoxFor(m => m.PhoneCus)</td>
+                    <td>@Html.ValidationMessageFor(m => m.PhoneCus)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="txt_field">
+            <table>
+                <tr>
+                    <th>@Html.LabelFor(m => m.EmailCus)</th>
+                    <td>@Html.TextBoxFor(m => m.EmailCus)</td>
+                    <td>@Html.ValidationMessageFor(m => m.EmailCus)</td>
+                </tr>
+            </table>
+        </div>
+
+        <input type="submit" value="Đăng Kí" />
+
+        <div class="signup_link">
+            Đã có tài khoản? <a href="@Url.Action("Login", "Customers")">Đăng Nhập</a>
+        </div>
+    }
+</div>

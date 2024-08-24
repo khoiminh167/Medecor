@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<script language="JavaScript">
+    var password;
+    var pass1 = "admin";
+    password = prompt('Nhập mật khẩu để tiếp tục', ' ');
+    if (password == pass1)
+        alert('Xin chào quản trị viên , Nhấn ok để tiếp tục.');
+    else {
+        window.location.href="/Home/Trangchu"
+    }
+        
+</script>
+
+<link href="~/Content/SPStyle.css" rel="stylesheet" />
+<h2 style="margin-top:50px;color:darkred;">TRANG QUẢN TRỊ</h2>
+<br />
+<table align="center">
+    <tr>
+        <th> <h2 style="font-family:'Berlin Sans FB'"> CATEGORY </h2> </th>
+    </tr>
+    <tr>
+        
+        <th>
+            <a href="/Categories/Index"><input type="submit" value="Điều chỉnh category" /> </a>
+
+        </th>
+    </tr>
+
+</table>
+<table align="center" style="margin-top:50px">
+    <tr>
+        <th> <h2  style="font-family: 'Berlin Sans FB'"> PRODUCT </h2> </th>
+    </tr>
+    <tr>
+        <th>
+            <a href="/Product/Danhsachsp"><input type="submit" value="Điều chỉnh sản phẩm" /></a>
+        </th>
+    </tr>
+
+</table>
+

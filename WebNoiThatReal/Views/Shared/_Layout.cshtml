@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width ">
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: black; text-align: center;  height: 70px; margin-bottom:-50px; margin-top: -20px;">
+        <div class="container" >
+            <!--<div class="navbar-header">-->
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">Ẩn
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                    </button>*@
+            <!--</div>-->
+        </div>
+        <div class="navbar-collapse collapse" style="background-color:black;">
+            <ul class="nav navbar-nav">
+                <ul id="nav">
+                    <li><a href="/Home/Trangchu">Trang chủ</a></li>
+                    <li><a href="">Giới thiệu</a></li>
+                    <li><a href="~/Product/Index">Nội thất</a></li>
+                    <li><a href="">Dịch vụ</a></li>
+                    <li><a href="">Dự án</a></li>
+                    <li><a href="">Liên hệ </a></li>
+
+
+                    <li><a href="/Customers/Register"><span class="glyphicon glyphicon-user"></span>SignUp</a></li>
+                    <li><a href="/Customers/Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+
+                    <li>
+
+
+
+                        <span>
+
+
+
+                            <a href="/ShoppingCart/ShowCart">
+
+
+
+                                <img src="@Url.Content("~/Content/Images/Cart.png") " style="height:30px;width:30px;margin-top:10px;" />
+                                @Html.Action("BagCart", "ShoppingCart")
+                            </a>
+                        </span>
+
+
+
+                    </li>
+                </ul>
+                @*<ul>
+                        <li class="format-hello">
+                            @if (Session["NameUser"] == null)
+                            {
+                                <span>Hello</span>
+                            }
+                            else
+                            {
+                                <span> @Session["NameUser"] </span>
+                            }
+                        </li>
+                    </ul>*@
+
+
+
+            </ul>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+
+
+    </div>
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)*@
+</body>
+</html>

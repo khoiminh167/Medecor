@@ -1,0 +1,8 @@
+﻿.field-validation-error {
+    color: red;
+}
+
+.required-star {
+    color: red;
+    font-weight: bold;
+}

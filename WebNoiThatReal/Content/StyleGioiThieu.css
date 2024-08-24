@@ -1,0 +1,31 @@
+﻿body {
+    background-image: url(bgtrang.png);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.hello {
+    font-size: 50px;
+}
+
+.lakaka {
+    text-align: center;
+}
+
+.mount {
+    text-align: left;
+    margin-left: 30px;
+    font-size: 35px;
+}
+
+.sterling {
+    text-align: left;
+    margin-left: 30px;
+    font-size: 17px;
+}
+
+#h4.havert {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 30px;
+}

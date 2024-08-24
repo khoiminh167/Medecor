@@ -1,0 +1,5 @@
+﻿@model WebNoiThatReal.Models.Category
+    @Html.DropDownListFor(Model => Model.IDCate,
+    new SelectList(Model.ListCate.OrderBy(Model => Model.NameCate), "IDCate", "NameCate"),"--Select Cate--")
+
+    

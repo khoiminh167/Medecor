@@ -1,0 +1,367 @@
+﻿@{
+    ViewBag.Title = "Trangchu";
+    Layout = "~/Views/Shared/Mainlayout.cshtml";
+}
+<link href="~/Content/MyStyle.css" rel="stylesheet" />
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+
+<body style="padding-top:120px">
+    
+    
+    <div class="container">
+        <div class="col-md-8" style="width:800px ;">
+            <div class="slider">
+                <div class="slides">
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+                    <div class="slide first">
+                        <img src="~/Content/Trangtri/saleqc.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/Content/Images/center.jpg" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/Content/Trangtri/sofaqc.jpg" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/Content/Trangtri/pcbed.png" alt="">
+                    </div>
+                    <div class="navigation-auto">
+                        <div class="auto-btn1"></div>
+                        <div class="auto-btn2"></div>
+                        <div class="auto-btn3"></div>
+                        <div class="auto-btn4"></div>
+                    </div>
+
+                </div>
+
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                    <label for="radio4" class="manual-btn"></label>
+                </div>
+
+            </div>
+
+            
+            <script type="text/javascript">
+                var counter = 1;
+                setInterval(function () {
+                    document.getElementById('radio' + counter).checked = true;
+                    counter++;
+                    if (counter > 4) {
+                        counter = 1;
+                    }
+                }, 5000);
+            </script>
+
+        </div>
+        <div class="col-md-4" style="width:300px;padding-left:40px">
+            <h2 style="font-family:Bahnschrift">DANH MỤC</h2>
+            <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+            <table style="font-family:Bahnschrift;font-size:25px">
+                <tr>
+                    <th><a style="color:black;text-decoration:none; " href="/Product/Index ">Tất cả sản phẩm</a></th>
+                </tr>
+            </table>
+
+            <table style="font-family:Consolas;font-size:20px;">
+                <tr>
+                    <th><a style="color: black;text-decoration:none;padding-left:20px" href="/Product?category=cate1 ">Bàn </a></th>
+                </tr>
+                <tr>
+                    <th><a style="color: black; text-decoration: none; padding-left: 20px" href="/Product?category=cate2 ">Ghế</a></th>
+                </tr>
+
+
+            </table>
+            <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+
+
+            <table style="font-family:Bahnschrift;font-size:20px">
+                <tr>
+                    <th> <a style="color: black;text-decoration:none;" href="/Product?category=cate3 "> Phòng Khách</a></th>
+                </tr>
+            </table>
+            <hr />
+            <table style="font-family:Bahnschrift;font-size:20px">
+                <tr>
+                    <th> <a style="color: black;text-decoration:none;" href="/Product?category=cate4 "> Phòng Ngủ</a></th>
+                </tr>
+            </table>
+            <hr />
+            <table style="font-family:Bahnschrift;font-size:20px">
+                <tr>
+                    <th> <a style="color: black;text-decoration:none;" href="/Product?category=cate5 "> Nhà Bếp</a></th>
+                </tr>
+            </table>
+            <hr />
+            <table style="font-family:Bahnschrift;font-size:20px">
+                <tr>
+                    <th> <a style="color: black;text-decoration:none;" href="/Product?category=cate6 "> Đồ Trang Trí</a></th>
+                </tr>
+            </table>
+
+
+          
+
+        </div>
+
+    </div>
+
+
+    <br /> <br />
+
+    <div>
+        <hr  style="height:1px;border:none;color:#333;background-color:#333;" />
+    </div>
+    <h2 style="font-family:Bahnschrift">BỘ SƯU TẬP NỔI BẬT</h2>
+
+
+
+    <div class="container" style="padding-top: 30px; font-family: Bahnschrift;text-shadow:0px -1px silver,1px 0px black,0px 1px black,-1px 0px black;">
+   
+        <div class="row">
+            <div style="padding-right:100px">
+                <div class="image">
+                    <img style="width:500px" src="~/Content/Images/c4_ZHYF.jpeg" alt="">
+                    <div class="details">
+                        <h2>Đồ <span>Trang trí</span></h2>
+                        <p>Có thể đặt ở bất cứ đâu ,mẫu mã đa dạng, phù hợp với nhiều không gian trong nhà.</p>
+                        <div class="more">
+                            <a style="color:brown;text-shadow:none" href="/Product?category=cate6 " class="read-more">XEM <span> NGAY</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-left:20px">
+                <div class="image">
+                    <img style="width:200%" src="~/Content/Trangtri/bedroom2.jpg" alt="">
+                    <div class="details">
+                        <h2>NỘI THẤT <span>PHÒNG NGỦ</span></h2>
+                        <p>Nội thất phòng ngủ hiện đại được bố trí hài hòa, đẹp mắt sẽ mang đến một không gian nghỉ ngơi thoải mái nhất cho người dùng.</p>
+                        <div class="more">
+                            <a style="color:brown;text-shadow:none" href="/Product?category=cate4" class="read-more"> Xem <span>Ngay</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container" style="padding-top: 30px; font-family: Bahnschrift; text-shadow: 0px -1px black,1px 0px black,0px 1px black,-1px 0px black; ">
+        
+        <div class="row">
+            <div style="padding-right:100px">
+                <div class="image">
+                    <img style="width:500px;" src="~/Content/Trangtri/phongkhach.jpg" alt="">
+                    <div class="details">
+                        <h2>Nội thất <span>PHÒNG KHÁCH</span></h2>
+                        <p>Đây là căn phòng quan trọng nhất, nơi sẽ tạo ấn tượng đầu tiên cho những vị khách ghé thăm, thể hiện phong cách sống, gu thẩm mỹ cũng như “tính cách” của chủ sở hữu.</p>
+                        <div class="more">
+                            <a style="color:brown;text-shadow:none" href="/Product?category=cate3" class="read-more"> Xem <span>Ngay</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-left:20px">
+                <div class="image">
+                    <img style="height:100%" src="~/Content/Trangtri/phongan.jpg" alt="">
+                    <div class="details">
+                        <h2>NỘI THẤT <span>NHÀ BẾP</span></h2>
+                        <p>Thiết kế thanh lịch kết hợp cùng các chi tiết thẩm mỹ, tận hưởng một không gian bếp hoàn hảo cho những chuyến phiêu lưu về ẩm thực.</p>
+                        <div class="more">
+                            <a style="color:brown;text-shadow:none" href="/Product?category=cate5" class="read-more"> Xem <span>Ngay</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <br />
+    <div>
+        <hr  style="height:1px;border:none;color:#333;background-color:#333;" />
+    </div>
+    <h2 style="font-family:Bahnschrift">SỰ KIỆN</h2>
+    <br />
+    <div class="container">
+        <div class="col-md-4">
+            <div>
+                <a href=" ">
+                    <img width="320" height="200" src="~/Content/Images/left.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="columns" style="width:1200PX">
+            <div class="col-md-8" style="text-align:left;width:740px;padding-left:0px">
+                <h3 class="news-title"><a href="/Product/Index  ">Showroom MEDECOR Tân Bình trở lại hoạt động. </a></h3>
+                <ul class="news-meta">
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>03/04/2022</li>
+
+                    <li><i class="fa fa-eye" aria-hidden="true"></i>10653</li>
+                </ul>
+                <div>
+                    <p>  Showroom MEDECOR Tân Bình sau một khoảng thời gian sửa sang và mở rộng đã chính thức hoạt động trở lại, kính mời Quý khách hàng ghé thăm."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="col-md-4">
+            <div>
+                <a href=" ">
+                    <img width="320" height="200" src="~/Content/Trangtri/sale2.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="columns" style="width:1200PX">
+            <div class="col-md-8" style="text-align:left;width:740px;padding-left:0px">
+                <h3 class="news-title"><a href="/Product/Index ">Ưu đãi mừng đại lễ 30/04 - 01/05 </a></h3>
+                <ul class="news-meta">
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>28/04/2022</li>
+
+                    <li><i class="fa fa-eye" aria-hidden="true"></i>12355</li>
+                </ul>
+                <div>
+                    <p> Chương trình sale mừng đại lễ với nhiều ưu đãi hấp dẫn, áp dụng với mọi cửa hàng MEDECOR trên toàn quốc , kính mời Quý khách hàng ghé thăm."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="col-md-4">
+            <div>
+                <a href=" ">
+                    <img width="320" height="200" src="~/Content/Trangtri/khaitruong2.png">
+                </a>
+            </div>
+        </div>
+        <div class="columns" style="width:1200PX">
+            <div class="col-md-8" style="text-align:left;width:740px;padding-left:0px">
+                <h3 class="news-title"><a href="/Product/Index  ">Khai trương Showroom MEDECOR Hải Phòng.</a></h3>
+                <ul class="news-meta">
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>16/07/2022</li>
+
+                    <li><i class="fa fa-eye" aria-hidden="true"></i>8062</li>
+                </ul>
+                <div>
+                    <p>Showroom mới nằm trong trung tâm thương mại của tòa nhà Aeon Mall cũng chính là showroom kiểu mẫu theo phong cách hiện đại của MeDECOR, nơi hội tụ nhiều sản phẩm nội thất đặc sắc, mới lạ nhất từ trước đến nay."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="col-md-4">
+            <div>
+                <a href=" ">
+                    <img width="320" height="200" src="~/Content/Trangtri/messi2.jpg">
+                </a>
+            </div>
+        </div>
+        <div class="columns" style="width:1200PX">
+            <div class="col-md-8" style="text-align:left;width:740px;padding-left:0px">
+                <h3 class="news-title"><a href=" ">MEDECOR là đối tác hàng đầu của đội bóng tại Paris.</a></h3>
+                <ul class="news-meta">
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i>26/09/2022</li>
+
+                    <li><i class="fa fa-eye" aria-hidden="true"></i>21531</li>
+                </ul>
+                <div>
+                    <p>MEDECOR chính thức trở thành nhà tài trợ chính đồng hành cùng Paris - Santa Man, mời các bạn dõi theo đội bóng thủ đô nước Pháp với logo MEDECOR trên vai. "</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <br />
+
+
+
+
+
+</body>
+<br />
+
+</html>
+
+
+
+
+
+
+<footer>
+    <div id="footer">
+        <table >
+            <tr>
+                <th>
+                    <div class="text" style="color:black; ">
+
+
+                        <h1 class="contact-1">STORE-Thảo Điền-TP.HCM</h1>
+                        <h2 class="contact-phone">0988587865</h2>
+                        <h2 class="contact-phone">232 A1-Nguyễn Văn Hưởng </h2>
+                    </div>
+                </th>
+                <th style="padding-left:300px">
+                    <div class="text" style=" color: black;">
+                        <h1 class="contact">STORE-Q1-TP.HCM</h1>
+                        <h2 class="contact-phone">089968898797</h2>
+                        <h2 class="contact-phone">167-Nguyễn Cư Trinh </h2>
+                    </div>
+
+                </th>
+            </tr>
+            <br />
+            <tr>
+                <th>
+                    <div class="text" style=" color: black;  ">
+                        <h1 class="contact">STORE-Đống Đa-Hà Nội</h1>
+                        <h2 class="contact-phone">2312321321321</h2>
+                        <h2 class="contact-phone">245-Đê La Thành</h2>
+                    </div>
+                </th>
+                <th style="padding-left:300px">
+                    <div class="text" style=" color: black ;">
+                        <h1 class="contact">STORE-Paris-Pháp</h1>
+                        <h2 class="contact-phone">07982645453435</h2>
+                        <h2 class="contact-phone">68-Rue Jean</h2>
+
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+</footer>
+
