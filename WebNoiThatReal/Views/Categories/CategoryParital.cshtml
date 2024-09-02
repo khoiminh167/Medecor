@@ -7,7 +7,6 @@
     #div-u {
         padding-top: 0px;
         margin-top: 10px;
-        
         text-decoration: none;
     }
 
@@ -31,7 +30,7 @@
     @{
         foreach (var item in Model)
         {
-            <li class="div-cate">
+            <li class="div-cate" style="font-size:22px">
                 @Html.ActionLink(item.NameCate, "Index", "Product", new { category = item.IDCate.Trim() }, "")
 
             </li>

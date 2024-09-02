@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NoiThatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WebNoiThatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="IDCate" />
@@ -12,6 +12,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDCate" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="NameCate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryUrl" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -23,6 +33,18 @@
           <Property Name="PasswordCus" Type="nchar" MaxLength="50" />
           <Property Name="PhoneCus" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="EmailCus" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="Views" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -57,7 +79,7 @@
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ImagePro" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__OrderDeta__IDOrd__6D0D32F4">
+        <Association Name="FK__OrderDeta__IDOrd__73BA3083">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -69,7 +91,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__6C190EBB">
+        <Association Name="FK__OrderDeta__IDPro__72C60C4A">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -81,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__693CA210">
+        <Association Name="FK__OrderPro__IDCus__6FE99F9F">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,21 +127,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NoiThatModelStoreContainer">
+        <EntityContainer Name="WebNoiThatModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderPro" EntityType="Self.OrderPro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__IDOrd__6D0D32F4" Association="Self.FK__OrderDeta__IDOrd__6D0D32F4">
+          <AssociationSet Name="FK__OrderDeta__IDOrd__73BA3083" Association="Self.FK__OrderDeta__IDOrd__73BA3083">
             <End Role="OrderPro" EntitySet="OrderPro" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__6C190EBB" Association="Self.FK__OrderDeta__IDPro__6C190EBB">
+          <AssociationSet Name="FK__OrderDeta__IDPro__72C60C4A" Association="Self.FK__OrderDeta__IDPro__72C60C4A">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__693CA210" Association="Self.FK__OrderPro__IDCus__693CA210">
+          <AssociationSet Name="FK__OrderPro__IDCus__6FE99F9F" Association="Self.FK__OrderPro__IDCus__6FE99F9F">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="OrderPro" EntitySet="OrderPro" />
           </AssociationSet>
@@ -128,11 +152,10 @@
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NoiThatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WebNoiThatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="IDCate" />
@@ -141,6 +164,16 @@
           <Property Name="IDCate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="NameCate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Pro_Category" FromRole="Category" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -152,7 +185,19 @@
           <Property Name="PasswordCus" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="PhoneCus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OrderProes" Relationship="Self.FK__OrderPro__IDCus__693CA210" FromRole="Customer" ToRole="OrderPro" />
+          <NavigationProperty Name="OrderProes" Relationship="Self.FK__OrderPro__IDCus__6FE99F9F" FromRole="Customer" ToRole="OrderPro" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Views" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -163,8 +208,8 @@
           <Property Name="IDOrder" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="UnitPrice" Type="Double" />
-          <NavigationProperty Name="OrderPro" Relationship="Self.FK__OrderDeta__IDOrd__6D0D32F4" FromRole="OrderDetail" ToRole="OrderPro" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__IDPro__6C190EBB" FromRole="OrderDetail" ToRole="Products" />
+          <NavigationProperty Name="OrderPro" Relationship="Self.FK__OrderDeta__IDOrd__73BA3083" FromRole="OrderDetail" ToRole="OrderPro" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__IDPro__72C60C4A" FromRole="OrderDetail" ToRole="Products" />
         </EntityType>
         <EntityType Name="OrderPro">
           <Key>
@@ -177,8 +222,8 @@
           <Property Name="PhoneCus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AddressDeliverry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__OrderPro__IDCus__693CA210" FromRole="OrderPro" ToRole="Customer" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDOrd__6D0D32F4" FromRole="OrderPro" ToRole="OrderDetail" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__OrderPro__IDCus__6FE99F9F" FromRole="OrderPro" ToRole="Customer" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDOrd__73BA3083" FromRole="OrderPro" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -191,7 +236,7 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Pro_Category" FromRole="Products" ToRole="Category" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDPro__6C190EBB" FromRole="Products" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDPro__72C60C4A" FromRole="Products" ToRole="OrderDetail" />
         </EntityType>
         <Association Name="FK_Pro_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -205,7 +250,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__693CA210">
+        <Association Name="FK__OrderPro__IDCus__6FE99F9F">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,7 +262,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDOrd__6D0D32F4">
+        <Association Name="FK__OrderDeta__IDOrd__73BA3083">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +274,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__6C190EBB">
+        <Association Name="FK__OrderDeta__IDPro__72C60C4A">
           <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,9 +286,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="medecorEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Collections" EntityType="Self.Collection" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="OrderProes" EntityType="Self.OrderPro" />
           <EntitySet Name="Products" EntityType="Self.Product" />
@@ -251,15 +298,15 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__693CA210" Association="Self.FK__OrderPro__IDCus__693CA210">
+          <AssociationSet Name="FK__OrderPro__IDCus__6FE99F9F" Association="Self.FK__OrderPro__IDCus__6FE99F9F">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="OrderPro" EntitySet="OrderProes" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDOrd__6D0D32F4" Association="Self.FK__OrderDeta__IDOrd__6D0D32F4">
+          <AssociationSet Name="FK__OrderDeta__IDOrd__73BA3083" Association="Self.FK__OrderDeta__IDOrd__73BA3083">
             <End Role="OrderPro" EntitySet="OrderProes" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__6C190EBB" Association="Self.FK__OrderDeta__IDPro__6C190EBB">
+          <AssociationSet Name="FK__OrderDeta__IDPro__72C60C4A" Association="Self.FK__OrderDeta__IDPro__72C60C4A">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
@@ -269,9 +316,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NoiThatModelStoreContainer" CdmEntityContainer="DBEntities">
+        <EntityContainerMapping StorageEntityContainer="WebNoiThatModelStoreContainer" CdmEntityContainer="medecorEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="NoiThatModel.Category">
+            <EntityTypeMapping TypeName="WebNoiThatModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IDCate" ColumnName="IDCate" />
@@ -279,8 +326,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Collections">
+            <EntityTypeMapping TypeName="WebNoiThatModel.Collection">
+              <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="CategoryUrl" ColumnName="CategoryUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="NoiThatModel.Customer">
+            <EntityTypeMapping TypeName="WebNoiThatModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="IDCus" ColumnName="IDCus" />
                 <ScalarProperty Name="UserNameCus" ColumnName="UserNameCus" />
@@ -291,8 +349,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="WebNoiThatModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="NoiThatModel.OrderDetail">
+            <EntityTypeMapping TypeName="WebNoiThatModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
@@ -303,7 +374,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderProes">
-            <EntityTypeMapping TypeName="NoiThatModel.OrderPro">
+            <EntityTypeMapping TypeName="WebNoiThatModel.OrderPro">
               <MappingFragment StoreEntitySet="OrderPro">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameCus" ColumnName="NameCus" />
@@ -316,7 +387,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="NoiThatModel.Product">
+            <EntityTypeMapping TypeName="WebNoiThatModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="NamePro" ColumnName="NamePro" />

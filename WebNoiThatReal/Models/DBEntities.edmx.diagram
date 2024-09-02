@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="62b3e60112a44de48711aa08add99763" Name="Diagram1">
-        <EntityTypeShape EntityType="NoiThatModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoiThatModel.Customer" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoiThatModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoiThatModel.OrderPro" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoiThatModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="NoiThatModel.FK_Pro_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="NoiThatModel.FK__OrderPro__IDCus__693CA210" ManuallyRouted="false" />
-        <AssociationConnector Association="NoiThatModel.FK__OrderDeta__IDOrd__6D0D32F4" ManuallyRouted="false" />
-        <AssociationConnector Association="NoiThatModel.FK__OrderDeta__IDPro__6C190EBB" ManuallyRouted="false" />
+      <Diagram DiagramId="db73fd07c4d54d489ef761c526b9d64c" Name="Diagram1">
+        <EntityTypeShape EntityType="WebNoiThatModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.Collection" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.Customer" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.Event" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.OrderPro" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebNoiThatModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="WebNoiThatModel.FK_Pro_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNoiThatModel.FK__OrderPro__IDCus__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNoiThatModel.FK__OrderDeta__IDOrd__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="WebNoiThatModel.FK__OrderDeta__IDPro__72C60C4A" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebNoiThatReal.Models.Event>
+
+@{
+    ViewBag.Title = "EventView";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>EventView</h2>
+
+
+<link rel="stylesheet" type="text/css" href="~/Content/slick.css" />
+// Add the new slick-theme.css if you want the default styling
+
+<link href="~/Content/styleslider.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script> <!-- Ensure jQuery is loaded first -->
+<script src="~/Scripts/slick.min.js"></script> <!-- Slick Slider script loaded after jQuery -->
+
+
+
+<body>
+
+
+
+
+    <div class="container-event" style="padding-bottom:50px;padding-top:70px">
+        <div class="event-slider autoplay">
+            @foreach (var eve in Model)
+            {
+                <div class="event-box">
+                    <div class="event-content">
+                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                            <img src="@Url.Content(eve.ImageUrl)" alt="Image of @eve.Title" class="event-image" />
+                        </a>
+                        <div class="event-details">
+                            <p class="event-name" style="font-size:20px ;font-weight:600">
+                                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                    @Html.DisplayFor(m => eve.EventName)
+                                </a>
+                            </p>
+                            <p class="event-date">
+                                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    @eve.EventDate.ToString("dd/MM/yyyy")
+                                </a>
+                            </p>
+                            <p class="event-views">
+                                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    @Html.DisplayFor(m => eve.Views)
+                                </a>
+                            </p>
+                            <p class="event-title">
+                                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                    @Html.DisplayFor(m => eve.Title)
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <script src="~/Scripts/scriptSlider.js"></script>
+
+</body>
+
+
+
+<br />
+
+
+
+
+<footer>
+    <br /><br />
+    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+    <div class="footer" style="opacity:0.6;text-align:center">
+        <h3><h4>Copyright © 2022 MeDECOR Interior Design. All Rights Reserved. </h4> Policy | Data Privacy | Sitemap</h3>
+    </div>
+</footer>

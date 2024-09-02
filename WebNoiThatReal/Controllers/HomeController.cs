@@ -3,14 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebNoiThatReal.Models;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using System.IO;
 
 namespace WebNoiThatReal.Controllers
 {
     public class HomeController : Controller
     {
+        medecorEntities db = new medecorEntities();
         public ActionResult Trangchu()
         {
-            return View();
+            // Lấy danh sách sản phẩm
+            var productList = db.Products.OrderByDescending(x => x.NamePro).ToList();
+
+            // Lấy danh sách sự kiện
+            var eventList = db.Events.OrderByDescending(x => x.Title).ToList();
+
+            // Tạo CombinedViewModel và gán dữ liệu vào
+            var combinedViewModel = new CombinedViewModel
+            {
+                Products = productList,
+                Events = eventList
+            };
+
+            // Truyền model vào view
+            return View(combinedViewModel);
         }
         public ActionResult DangNhap()
         {
@@ -38,7 +57,21 @@ namespace WebNoiThatReal.Controllers
         }
         public ActionResult LienHe()
         {
-            return View();
+            // Lấy danh sách sản phẩm
+            var productList = db.Products.OrderByDescending(x => x.NamePro).ToList();
+
+            // Lấy danh sách sự kiện
+            var eventList = db.Events.OrderByDescending(x => x.Title).ToList();
+
+            // Tạo CombinedViewModel và gán dữ liệu vào
+            var combinedViewModel = new CombinedViewModel
+            {
+                Products = productList,
+                Events = eventList
+            };
+
+            // Truyền model vào view
+            return View(combinedViewModel);
         }
 
         public ActionResult About()

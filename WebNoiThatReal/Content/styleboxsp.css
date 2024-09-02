@@ -1,0 +1,72 @@
+﻿.row {
+    margin-left: -50px; /* Negative margin to reduce space between columns */
+    margin-right: 0px; /* Negative margin to reduce space between columns */
+}
+
+.col-sm-6, .col-md-4, .col-lg-3 {
+    padding-left: 10px; /* Adjust the padding for column spacing */
+    padding-right: 0px; /* Adjust the padding for column spacing */
+}
+
+.product-box {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 20px; /* Khoảng cách dưới mỗi hộp sản phẩm */
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 300px; /* Chiều cao cố định của mỗi hộp sản phẩm */
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+    .product-box img {
+        border-radius: 5px;
+        width: 100%;
+        height: 150px; /* Chiều cao hình ảnh cố định để phù hợp với chiều cao của hộp */
+        object-fit: cover; /* Đảm bảo hình ảnh không bị kéo dãn hoặc bị biến dạng */
+    }
+
+    .product-box p {
+        margin: 10px 0;
+        font-family: Bahnschrift;
+        font-size: medium;
+        flex: 1; /* Để nội dung của <p> không chiếm quá nhiều không gian */
+    }
+    p.price-pro {
+        align-content:flex-end;
+        color:darkred;
+    }
+
+.product-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5); /* Tăng độ mờ của lớp phủ */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-box:hover .product-overlay {
+    opacity: 1;
+}
+
+.product-box:hover {
+    transform: scale(1.05);
+}
+
+.btn-view-more {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}

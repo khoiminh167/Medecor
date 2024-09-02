@@ -10,7 +10,7 @@ namespace WebNoiThatReal.Controllers
 {
     public class CategoriesController : Controller
     {
-        DBEntities database = new DBEntities();
+        medecorEntities database = new medecorEntities();
         // GET: Categories
         public PartialViewResult CategoryParital()
         {

@@ -13,10 +13,10 @@ namespace WebNoiThatReal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBEntities : DbContext
+    public partial class medecorEntities : DbContext
     {
-        public DBEntities()
-            : base("name=DBEntities")
+        public medecorEntities()
+            : base("name=medecorEntities")
         {
         }
     
@@ -26,7 +26,9 @@ namespace WebNoiThatReal.Models
         }
     
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<OrderPro> OrderProes { get; set; }
         public virtual DbSet<Product> Products { get; set; }

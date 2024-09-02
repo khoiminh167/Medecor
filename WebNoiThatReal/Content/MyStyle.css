@@ -241,6 +241,12 @@ li.format-hello {
     text-transform: uppercase;
 }
 
+.read-more:hover {
+    color: darkred;
+    text-decoration: underline;
+}
+
+
     .more .read-more span {
         font-weight: 900;
     }
@@ -256,20 +262,12 @@ li.format-hello {
 
 /* Responsive CSS */
 
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
     .image {
-        flex: 100%;
-        max-width: 480px;
+        width: 100%;
+        padding: 10px 0;
     }
 }
 
-@media (max-width: 400px) {
-    .image .details p {
-        font-size: 16px;
-    }
-
-    .more .read-more, .more .icon-links a i {
-        font-size: 18px;
-    }
 }
 

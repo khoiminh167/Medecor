@@ -1,0 +1,68 @@
+﻿/* Căn giữa container cụ thể mà không ảnh hưởng đến toàn bộ trang */
+.center-container {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    margin-top: 20px; /* Optional: Thêm margin trên cùng */
+}
+
+.container-homeslide {
+    width: 100%; /* Đảm bảo container chiếm toàn bộ chiều ngang của trang */
+    max-width: 1600px; /* Hoặc chiều rộng tối đa bạn muốn */
+    box-sizing: border-box; /* Bao gồm padding và border trong chiều rộng */
+}
+
+.row {
+    display: flex; /* Hiển thị các cột bên cạnh nhau */
+    align-items: flex-start; /* Căn chỉnh các phần tử theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+}
+
+.slider-container, .category-container {
+    box-sizing: border-box; /* Bao gồm padding và border trong chiều rộng */
+}
+
+.slider-container {
+    flex: 0 0 40%; /* Chiếm khoảng 50% chiều rộng của container */
+    padding-right: 10px; /* Khoảng cách bên phải để tránh sát mép */
+    padding-left:60px;
+}
+
+.category-container {
+    margin-left:0px;
+    flex: 0 0 20%; /* Chiếm khoảng 50% chiều rộng của container */
+    padding-left: 10px; /* Khoảng cách bên trái để tránh sát mép */
+    box-sizing: border-box; /* Bao gồm padding và border trong chiều rộng */
+}
+
+/* Đảm bảo ảnh slider không bị lệch */
+.slider img {
+    width: 100%; /* Đảm bảo ảnh slider chiếm toàn bộ chiều rộng của slider */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ tỷ lệ khung hình */
+}
+
+/* Đảm bảo danh sách category không gây vấn đề về chiều rộng */
+#div-u {
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Ngăn chặn nội dung tràn ra ngoài */
+}
+
+.div-cate {
+    height: 40px;
+    width: 100%; /* Đảm bảo danh mục chiếm toàn bộ chiều rộng của container */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+ul {
+    padding: 0; /* Xóa padding mặc định của ul */
+    margin: 0; /* Xóa margin mặc định của ul */
+    list-style: none; /* Xóa điểm danh sách */
+}

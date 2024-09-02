@@ -1,0 +1,18 @@
+﻿@model WebNoiThatReal.Models.Event
+
+@{
+    ViewBag.Title = "Event Detail";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>@Model.EventName</h2>
+<img src="@Url.Content(Model.ImageUrl)" alt="Image of @Model.Title" />
+<p>@Model.Title</p>
+<p>@Model.EventDate</p>
+
+
+<div class="event-description">
+    <p><strong>Mô tả:</strong></p>
+    @Html.Raw(Model.Description)
+</div>
+

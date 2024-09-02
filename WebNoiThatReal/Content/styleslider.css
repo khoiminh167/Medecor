@@ -1,0 +1,226 @@
+﻿
+a {
+    color: black; /* Thay đổi màu chữ thành màu đen */
+    text-decoration: none; /* Loại bỏ gạch chân của link */
+}
+
+a:hover {
+    color: #333; /* Màu chữ khi hover, có thể tùy chỉnh theo ý muốn */
+    text-decoration: none; /* Thêm gạch chân khi hover nếu cần */
+}
+
+a:visited {
+    color: black; /* Màu chữ cho các liên kết đã thăm */
+}
+
+a:active {
+    color: black; /* Màu chữ cho các liên kết đang được nhấp */
+}
+
+
+.event-box {
+    display: flex;
+    margin: 0 15px; /* Khoảng cách giữa các box */
+    padding: 0; /* Xóa padding bên trong box */
+    background: #ffffff; /* Màu nền trắng */
+    border: 1px solid #ccc; /* Viền đen nhạt */
+    box-sizing: border-box;
+    width: 100%; /* Chiều rộng của box */
+    height: 400px;
+    flex-direction: column; /* Căn chỉnh nội dung theo chiều dọc */
+    overflow: hidden; /* Đảm bảo không có khoảng trống thừa */
+}
+
+
+.event-image {
+    width: 100%; /* Đảm bảo ảnh bao phủ toàn bộ chiều rộng của box */
+    height: 200px; /* Đặt chiều cao cố định để giữ tỷ lệ khung hình */
+    object-fit: cover; /* Cắt hình ảnh để phù hợp với khung */
+    display: block; /* Xóa khoảng trống dưới ảnh */
+    margin: 0; /* Xóa khoảng cách ngoài ảnh */
+    padding: 0; /* Xóa khoảng cách bên trong ảnh */
+}
+
+
+/* Nội dung bên dưới hình ảnh */
+.event-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0; /* Xóa padding để sát với hình ảnh */
+    flex: 1; /* Đảm bảo nội dung chiếm hết không gian còn lại */
+}
+
+/* Định dạng cho chi tiết sự kiện */
+.event-details {
+    flex: 1;
+    padding: 0 10px; /* Tạo khoảng cách nhỏ bên trong box */
+}
+
+    /* Kiểu dáng cho các đoạn văn bản bên trong chi tiết sự kiện */
+    .event-details p {
+        margin: 5px 0; /* Tạo khoảng cách giữa các đoạn văn bản */
+    }
+
+
+
+.container-event {
+    padding: 0 10px; /* Thay đổi padding nếu cần để căn giữa */
+    width: 100%; /* Đảm bảo container sử dụng toàn bộ chiều rộng của bố cục */
+    box-sizing: border-box; /* Đảm bảo padding và border không vượt quá kích thước */
+}
+
+
+
+
+.slick-dots li button {
+    display: none;
+}
+
+.event-slider {
+    margin: 0 auto; /* Center the slider */
+    max-width: 1200px; /* Limit the width of the slider */
+    position: relative; /* Ensure slider positioning is relative */
+}
+
+
+
+/* Kiểu dáng cho tên sự kiện */
+.event-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Giới hạn hiển thị 1 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị "..." khi tràn văn bản */
+}
+
+.event-title,
+.event-date,
+.event-views {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show "..." when text overflows */
+}
+
+
+.slick-slide {
+    display: flex !important;
+    justify-content: center; /* Center slides within the container */
+    padding: 0;
+}
+
+.slick-track {
+    display: flex !important;
+    margin: 0;
+}
+
+
+
+/* Đặt mũi tên vào bên trong slider */
+.slick-prev, .slick-next {
+    background: #C70039;
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: background 0.3s, opacity 0.3s; /* Thêm transition cho opacity */
+    opacity: 0; /* Ẩn mũi tên mặc định */
+}
+
+
+/* Hiển thị nút khi hover vào slider với animation từ trái vào */
+.event-slider:hover .slick-prev {
+    animation: fadeInRight 1s forwards; /* Hiệu ứng fade in left */
+}
+
+/* Hiển thị nút khi hover vào slider với animation từ phải vào */
+.event-slider:hover .slick-next {
+    animation: fadeInLeft 1s forwards; /* Hiệu ứng fade in right */
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: #dc0241; /* Màu đậm hơn khi hover */
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+/* Keyframes cho hiệu ứng fade in left */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px); /* Bắt đầu từ bên trái */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Kết thúc ở vị trí chuẩn */
+    }
+}
+
+/* Keyframes cho hiệu ứng fade in right */
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px); /* Bắt đầu từ bên phải */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Kết thúc ở vị trí chuẩn */
+    }
+}
+
+/* Ẩn nút khi chuột rời khỏi slider */
+.event-slider:not(:hover) .slick-prev {
+    animation: fadeOutRight 0.5s forwards; 
+}
+
+.event-slider:not(:hover) .slick-next {
+    animation: fadeOutLeft 0.5s forwards; 
+}
+
+
+/* Keyframes cho hiệu ứng fade out left */
+@keyframes fadeOutLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0); /* Bắt đầu từ vị trí chuẩn */
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-20px); /* Kết thúc ở bên trái */
+    }
+}
+
+/* Keyframes cho hiệu ứng fade out right */
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0); /* Bắt đầu từ vị trí chuẩn */
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(20px); /* Kết thúc ở bên phải */
+    }
+}
+

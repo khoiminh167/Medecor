@@ -1,0 +1,68 @@
+﻿@model WebNoiThatReal.Models.Event
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Event", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table class="table-bordered" style="margin-left:350px">
+    <tr>
+        <td>@Html.LabelFor(m => m.EventName)</td>
+        <td>@Html.EditorFor(m => m.EventName)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Title)</td>
+        <td>@Html.EditorFor(m => m.Title)</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.EventDate)</td>
+        <td>
+            <input type="date"
+                   name="EventDate"
+                   value="@Model.EventDate.ToString("yyyy-MM-dd")"
+                   class="form-control" />
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>@Html.LabelFor(m => m.Views)</td>
+        <td>@Html.EditorFor(m => m.Views)</td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(m => m.Description)</td>
+        <td>
+            @Html.TextAreaFor(m => m.Description, new { @class = "ckeditor" })
+        </td>
+    </tr>
+
+
+
+    <tr>
+        <td>@Html.LabelFor(m => m.ImageUrl)</td>
+        <td>
+            <img src="@Url.Content(Model.ImageUrl)" height="150" width="150" id="previewImg" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="file" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
+            <input type="submit" value="Tạo mới" />
+
+        </td>
+    </tr>
+
+
+</table>
+}
+
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Description');
+</script>
+

@@ -9,7 +9,7 @@ namespace WebNoiThatReal.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        DBEntities database = new DBEntities();
+        medecorEntities database = new medecorEntities();
         // GET: ShoppingCart
         public ActionResult Index()
         {

@@ -7,76 +7,8 @@
 
 <script src="~/Content/fontawesome/all.js"></script>
 
-<head>
-    <style>
-        
 
-        .row {
-            margin-left: -50px; /* Negative margin to reduce space between columns */
-            margin-right: 0px; /* Negative margin to reduce space between columns */
-        }
-
-        .col-sm-6, .col-md-4, .col-lg-3 {
-            padding-left: 10px; /* Adjust the padding for column spacing */
-            padding-right: 10px; /* Adjust the padding for column spacing */
-        }
-        .product-box {
-            position: relative;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            padding: 10px;
-            margin-bottom: 20px; /* Khoảng cách dưới mỗi hộp sản phẩm */
-            transition: transform 0.3s ease;
-            width: 100%;
-            height: 300px; /* Chiều cao cố định của mỗi hộp sản phẩm */
-            max-width: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-            .product-box img {
-                border-radius: 5px;
-                width: 100%;
-                height: 150px; /* Chiều cao hình ảnh cố định để phù hợp với chiều cao của hộp */
-                object-fit: cover; /* Đảm bảo hình ảnh không bị kéo dãn hoặc bị biến dạng */
-            }
-
-            .product-box p {
-                margin: 10px 0;
-                font-family: Bahnschrift;
-                font-size: medium;
-                flex: 1; /* Để nội dung của <p> không chiếm quá nhiều không gian */
-            }
-
-        .product-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.5); /* Tăng độ mờ của lớp phủ */
-            color: white;
-            text-align: center;
-            padding: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-box:hover .product-overlay {
-            opacity: 1;
-        }
-        .product-box:hover {
-            transform: scale(1.05);
-        }
-        .btn-view-more {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
+<link href="~/Content/styleboxsp.css" rel="stylesheet" />
 
 <div class="container" style="padding-bottom:50px;padding-top:70px">
     <div class="row">
@@ -90,17 +22,17 @@
                     <p>
                         <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">@Html.DisplayFor(m => pro.NamePro)</a>
                     </p>
-                    <p style="color: darkred">
+                    <p class="price-pro">
                         @string.Format("{0:N0}", pro.Price) Đ
                     </p>
                     <div class="product-overlay">
-                        <form action="/ShoppingCart/AddToCart" method="post">
+                        <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">
                             <input type="hidden" name="id" value="@pro.ProductID" />
                             <input type="hidden" name="quantity" value="1" />
                             <button type="submit" class="btn-view-more">
                                 <i class="fas fa-info-circle"></i> Xem thêm
                             </button>
-                        </form>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -109,7 +41,7 @@
 </div>
 
 
-<footer style="padding-right:170px">
+<footer>
     <br /><br />
     <hr style="height:1px;border:none;color:#333;background-color:#333;" />
     <div class="footer" style="opacity:0.6;text-align:center">

@@ -1,75 +1,113 @@
-﻿@{ ViewBag.Title = "LienHe";
-                Layout = "~/Views/Shared/MainLayout.cshtml"; }
+﻿@model WebNoiThatReal.Models.CombinedViewModel
+
+@{ ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/MainLayout.cshtml"; }
 
 
 <script src="~/Content/fontawesome/all.js"></script>
-<style>
-    .contact {
-        font-size: 20px;
-    }
-</style>
-<div class="container" style="text-align:center">
-    <div class="show" style="padding-top:60px; line-height: 30px">
-        <h1 style="margin: 30px; font-size:50px">LIÊN HỆ</h1>
-        <p>
-            <b class="contact">
-                TRỰC TIẾP
-            </b>
-            <br />
-            MR YVES HUY PHAN
-            <br />
-            T: +84 914 93 88 44
-            <br />
-            E: BUIDUCTHINH2612@GMAIL.COM
-            <br />
-            ĐẶT LỊCH THIẾT KẾ
 
 
-            <hr />
-        </p>
-        <p>
-            <b class="contact">
-                SHOWROOM
-                & VĂN PHÒNG
-            </b>
-            <br />
-            215A1 NGUYỄN VĂN HƯỞNG,
-            <br />
-            THẢO ĐIỀN, HCM, VIỆT NAM
-            <br />
-            T: 028 38989818
-            <br />
-            9:00-21:00
-            <hr />
-        </p>
-        <p>
-            <b class="contact">
-                SOCIAL
-            </b>
-            <br />
-            <a href="https://www.facebook.com/minhkhoictb" style="color:white">FACEBOOK</a>
-            <br />
-            TIKTOK
-            <br />
-            <a href="https://www.youtube.com/ThaiCongTV" style="color:white">YOUTUBE</a>
-            <br />
-            INSTAGRAM
-            <hr />
-        </p>
-        <p>
-            <b class="contact">
-                EMAIL
-            </b>
-            <br />
-            TRUYỀN THÔNG
-            <br />
-            PHÁT TRIỂN KINH DOANH
-            <br />
-            TUYỂN DỤNG
-            <hr />
-        </p>
-    </div>
-    <div class="footer" style="opacity:0.6">
-        <h3> <h4>Copyright © 2022 MeDECOR Interior Design. All Rights Reserved. </h4> Policy | Data Privacy | Sitemap</h3>
-    </div>
+<h2 style="font-family: Bahnschrift; margin-top: 70PX; margin-left: 30PX;">TIN TỨC</h2>
+
+
+<div class="container" style="padding-bottom:50px;padding-top:20px">
+    <div class="row">
+        @foreach (var eve in Model.Events.OrderByDescending(e => e.EventDate))
+        {
+    <div class="col-md-12">
+        <div class="event-box">
+            <div class="event-content">
+                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                    <img src="@Url.Content(eve.ImageUrl)" alt="Image of @eve.Title" class="event-image" />
+                </a>
+
+                <div class="event-details">
+                    <p class="event-name" style="font-size:20px ;font-weight:600">
+                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                            @Html.DisplayFor(m => eve.EventName)
+                        </a>
+                    </p>
+                    <p class="event-date">
+                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            @eve.EventDate.ToString("dd/MM/yyyy")
+                        </a>
+                    </p>
+                    <p class="event-views">
+                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            @Html.DisplayFor(m => eve.Views)
+                        </a>
+                    </p>
+                    <p class="event-title">
+                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                            @Html.DisplayFor(m => eve.Title)
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>}
+ 
 </div>
+    <style>
+        .event-box {
+            display: flex; /* Use flexbox for layout */
+            margin-bottom: 5px; /* Space between event boxes */
+            padding: 15px; /* Padding around the box */
+            border: 0px solid #ddd; /* Border around the event box */
+        }
+
+        .event-content {
+            display: flex;
+            align-items: flex-start; /* Align items to the start of the flex container */
+            width: 100%; /* Full width of the parent container */
+        }
+
+        .event-image {
+            width: 400px; /* Adjust the width of the image */
+            max-height: 300px; /* Keep aspect ratio */
+            margin-right: 40px; /* Space between the image and the details */
+            flex-shrink: 0; /* Prevent image from shrinking */
+        }
+
+        .event-details {
+            margin-top: 0px;
+            flex: 1; /* Take up the remaining space */
+        }
+
+            .event-details p {
+                margin: 10px 0; /* Space between paragraphs */
+            }
+
+            .event-details a {
+                text-decoration: none; /* Remove underline from links */
+                color: #333; /* Set a color for the text */
+            }
+
+                .event-details a:hover {
+                    color: #007bff; /* Color change on hover */
+                }
+
+
+        /* Kiểu dáng cho tên sự kiện */
+        .event-name {
+            display: -webkit-box;
+            -webkit-line-clamp: 1; /* Giới hạn hiển thị 1 dòng */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Hiển thị "..." khi tràn văn bản */
+        }
+
+        .event-title,
+        .event-date,
+        .event-views {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Limit to 3 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Show "..." when text overflows */
+        }
+
+
+    </style>

@@ -13,7 +13,7 @@ namespace WebNoiThatReal
 {
     public class ProductController : Controller
     {
-        DBEntities db = new DBEntities();
+        medecorEntities db = new medecorEntities();
         // GET: Product
         
         public ActionResult Index(string Category)
@@ -29,6 +29,7 @@ namespace WebNoiThatReal
                 var productList = db.Products.OrderByDescending(x => x.NamePro).Where(x => x.IDCate == Category);
                 return View(productList);
             }
+            
         }
 
         [HttpGet]
