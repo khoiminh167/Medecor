@@ -1,113 +1,68 @@
-﻿@model WebNoiThatReal.Models.CombinedViewModel
+﻿@model PagedList.IPagedList<WebNoiThatReal.Models.Event>
 
-@{ ViewBag.Title = "LienHe";
-    Layout = "~/Views/Shared/MainLayout.cshtml"; }
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
 
+<link href="~/Content/Trangtri/StyleLienHe.css" rel="stylesheet" />
 
-<script src="~/Content/fontawesome/all.js"></script>
+<div class="content-lien-he">
+    
+    <h2 style="font-family: Bahnschrift; margin-top: 70px; margin-left: 30px;">TIN TỨC</h2>
 
+    <div class="container" style="padding-bottom:50px;padding-top:20px">
+        <div class="row">
+            @foreach (var eve in Model.OrderByDescending(e => e.EventDate))
+            {
+                <div class="col-md-12">
+                    <div class="event-box">
+                        <div class="event-content">
+                            <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                <img src="@Url.Content(eve.ImageUrl)" alt="Image of @eve.Title" class="event-image" />
+                            </a>
 
-<h2 style="font-family: Bahnschrift; margin-top: 70PX; margin-left: 30PX;">TIN TỨC</h2>
-
-
-<div class="container" style="padding-bottom:50px;padding-top:20px">
-    <div class="row">
-        @foreach (var eve in Model.Events.OrderByDescending(e => e.EventDate))
-        {
-    <div class="col-md-12">
-        <div class="event-box">
-            <div class="event-content">
-                <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
-                    <img src="@Url.Content(eve.ImageUrl)" alt="Image of @eve.Title" class="event-image" />
-                </a>
-
-                <div class="event-details">
-                    <p class="event-name" style="font-size:20px ;font-weight:600">
-                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
-                            @Html.DisplayFor(m => eve.EventName)
-                        </a>
-                    </p>
-                    <p class="event-date">
-                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            @eve.EventDate.ToString("dd/MM/yyyy")
-                        </a>
-                    </p>
-                    <p class="event-views">
-                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            @Html.DisplayFor(m => eve.Views)
-                        </a>
-                    </p>
-                    <p class="event-title">
-                        <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
-                            @Html.DisplayFor(m => eve.Title)
-                        </a>
-                    </p>
+                            <div class="event-details">
+                                <p class="event-name" style="font-size:20px; font-weight:600;">
+                                    <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                        @Html.DisplayFor(m => eve.EventName)
+                                    </a>
+                                </p>
+                                <p class="event-date">
+                                    <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        @eve.EventDate.ToString("dd/MM/yyyy")
+                                    </a>
+                                </p>
+                                <p class="event-views">
+                                    <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        @Html.DisplayFor(m => eve.Views)
+                                    </a>
+                                </p>
+                                <p class="event-title">
+                                    <a href="@Url.Action("EventDetail", "Event", new { id = eve.Id })">
+                                        @Html.DisplayFor(m => eve.Title)
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
-    </div>}
- 
+
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("LienHe", new { page }))
+    </div>
 </div>
-    <style>
-        .event-box {
-            display: flex; /* Use flexbox for layout */
-            margin-bottom: 5px; /* Space between event boxes */
-            padding: 15px; /* Padding around the box */
-            border: 0px solid #ddd; /* Border around the event box */
-        }
-
-        .event-content {
-            display: flex;
-            align-items: flex-start; /* Align items to the start of the flex container */
-            width: 100%; /* Full width of the parent container */
-        }
-
-        .event-image {
-            width: 400px; /* Adjust the width of the image */
-            max-height: 300px; /* Keep aspect ratio */
-            margin-right: 40px; /* Space between the image and the details */
-            flex-shrink: 0; /* Prevent image from shrinking */
-        }
-
-        .event-details {
-            margin-top: 0px;
-            flex: 1; /* Take up the remaining space */
-        }
-
-            .event-details p {
-                margin: 10px 0; /* Space between paragraphs */
-            }
-
-            .event-details a {
-                text-decoration: none; /* Remove underline from links */
-                color: #333; /* Set a color for the text */
-            }
-
-                .event-details a:hover {
-                    color: #007bff; /* Color change on hover */
-                }
-
-
-        /* Kiểu dáng cho tên sự kiện */
-        .event-name {
-            display: -webkit-box;
-            -webkit-line-clamp: 1; /* Giới hạn hiển thị 1 dòng */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis; /* Hiển thị "..." khi tràn văn bản */
-        }
-
-        .event-title,
-        .event-date,
-        .event-views {
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* Limit to 3 lines */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis; /* Show "..." when text overflows */
-        }
-
-
-    </style>
+<footer>
+    <br /><br />
+    <hr style="height:1px;border:none;color:#333;background-color:#333;" />
+    <div class="footer" style="opacity:0.6;text-align:center">
+        <h4>Copyright © 2024 MeDECOR Interior Design. All Rights Reserved.</h4>
+        <h5> Policy | Data Privacy | Sitemap</h5>
+    </div>
+</footer>

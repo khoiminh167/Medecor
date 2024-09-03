@@ -137,6 +137,7 @@ a:active {
     cursor: pointer;
     transition: background 0.3s, opacity 0.3s; /* Thêm transition cho opacity */
     opacity: 0; /* Ẩn mũi tên mặc định */
+    
 }
 
 
@@ -170,7 +171,7 @@ a:active {
     }
 
     100% {
-        opacity: 1;
+        opacity: 0.8;
         transform: translateX(0); /* Kết thúc ở vị trí chuẩn */
     }
 }
@@ -183,7 +184,7 @@ a:active {
     }
 
     100% {
-        opacity: 1;
+        opacity: 0.8;
         transform: translateX(0); /* Kết thúc ở vị trí chuẩn */
     }
 }
@@ -201,7 +202,7 @@ a:active {
 /* Keyframes cho hiệu ứng fade out left */
 @keyframes fadeOutLeft {
     0% {
-        opacity: 1;
+        opacity: 0.8;
         transform: translateX(0); /* Bắt đầu từ vị trí chuẩn */
     }
 
@@ -214,7 +215,7 @@ a:active {
 /* Keyframes cho hiệu ứng fade out right */
 @keyframes fadeOutRight {
     0% {
-        opacity: 1;
+        opacity: 0.8;
         transform: translateX(0); /* Bắt đầu từ vị trí chuẩn */
     }
 

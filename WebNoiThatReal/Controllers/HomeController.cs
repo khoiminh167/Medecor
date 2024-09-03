@@ -7,6 +7,7 @@ using WebNoiThatReal.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.IO;
+using PagedList;
 
 namespace WebNoiThatReal.Controllers
 {
@@ -55,23 +56,11 @@ namespace WebNoiThatReal.Controllers
         {
             return View();
         }
-        public ActionResult LienHe()
+        public ActionResult LienHe(int? page)
         {
-            // Lấy danh sách sản phẩm
-            var productList = db.Products.OrderByDescending(x => x.NamePro).ToList();
-
-            // Lấy danh sách sự kiện
-            var eventList = db.Events.OrderByDescending(x => x.Title).ToList();
-
-            // Tạo CombinedViewModel và gán dữ liệu vào
-            var combinedViewModel = new CombinedViewModel
-            {
-                Products = productList,
-                Events = eventList
-            };
-
-            // Truyền model vào view
-            return View(combinedViewModel);
+            if (page == null) page = 1;
+            var EventList = db.Events.OrderByDescending(x => x.Title).ToPagedList(page.Value, 4);
+            return View(EventList);
         }
 
         public ActionResult About()

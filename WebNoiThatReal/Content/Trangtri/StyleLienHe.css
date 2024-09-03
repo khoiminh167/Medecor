@@ -1,0 +1,68 @@
+﻿
+
+    .content-lien-he a:hover {
+        color: #333 !important;
+        text-decoration: none !important; /* Thêm gạch chân khi hover nếu cần */
+    }
+
+
+
+
+.event-box {
+    margin-left: 50px;
+    display: flex; /* Use flexbox for layout */
+    margin-bottom: 5px; /* Space between event boxes */
+    padding: 15px; /* Padding around the box */
+    border: 0px solid #ddd; /* Border around the event box */
+}
+
+.event-content {
+    display: flex;
+    align-items: flex-start; /* Align items to the start of the flex container */
+    width: 1000px; /* Full width of the parent container */
+}
+
+.event-image {
+    width: 300px; /* Adjust the width of the image */
+    max-height: 250px; /* Keep aspect ratio */
+    margin-right: 40px; /* Space between the image and the details */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.event-details {
+    margin-top: 0px;
+    flex: 1; /* Take up the remaining space */
+}
+
+    .event-details p {
+        margin: 10px 0; /* Space between paragraphs */
+    }
+
+    .event-details a {
+        text-decoration: none; /* Remove underline from links */
+        color: #333; /* Set a color for the text */
+    }
+
+        .event-details a:hover {
+            color: #007bff; /* Color change on hover */
+        }
+
+
+/* Kiểu dáng cho tên sự kiện */
+.event-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Giới hạn hiển thị 1 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị "..." khi tràn văn bản */
+}
+
+.event-title,
+.event-date,
+.event-views {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show "..." when text overflows */
+}
