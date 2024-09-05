@@ -7,7 +7,7 @@ using WebNoiThatReal.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.IO;
-
+using PagedList;
 
 namespace WebNoiThatReal
 {
@@ -15,21 +15,24 @@ namespace WebNoiThatReal
     {
         medecorEntities db = new medecorEntities();
         // GET: Product
-        
-        public ActionResult Index(string Category)
+
+        public ActionResult Index(string Category, int? page)
         {
-            if(Category == null)
+
+            if (page == null) page = 1;
+
+            if (Category == null)
             {
-                var productList = db.Products.OrderByDescending(x => x.NamePro);
+                var productList = db.Products.OrderByDescending(x => x.NamePro).ToPagedList(page.Value, 8);
                 return View(productList);
             }
             else
             {
-                
-                var productList = db.Products.OrderByDescending(x => x.NamePro).Where(x => x.IDCate == Category);
+
+                var productList = db.Products.OrderByDescending(x => x.NamePro).Where(x => x.IDCate == Category).ToPagedList(page.Value, 8);
                 return View(productList);
             }
-            
+
         }
 
         [HttpGet]
@@ -45,7 +48,7 @@ namespace WebNoiThatReal
             Category se_cate = new Category();
             se_cate.ListCate = db.Categories.ToList<Category>();
             return PartialView(se_cate);
-            
+
         }
 
         [HttpPost]
@@ -77,15 +80,15 @@ namespace WebNoiThatReal
         {
             return View(db.Products.ToList());
         }
-        
+
         public ActionResult Details(int id)
         {
-            return View(db.Products.Where(s => s.ProductID== id).FirstOrDefault());
+            return View(db.Products.Where(s => s.ProductID == id).FirstOrDefault());
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var pro = db.Products.Where(s => s.ProductID== id).FirstOrDefault();
+            var pro = db.Products.Where(s => s.ProductID == id).FirstOrDefault();
             return View(pro);
         }
         [HttpPost]
@@ -103,7 +106,7 @@ namespace WebNoiThatReal
         [HttpPost]
         public ActionResult Delete(int id, Product pro)
         {
-            pro= db.Products.Where(s => s.ProductID == id).FirstOrDefault();
+            pro = db.Products.Where(s => s.ProductID == id).FirstOrDefault();
             db.Products.Remove(pro);
             db.SaveChanges();
             return RedirectToAction("Danhsachsp");
@@ -127,4 +130,4 @@ namespace WebNoiThatReal
 
 
     }
-}   
+}

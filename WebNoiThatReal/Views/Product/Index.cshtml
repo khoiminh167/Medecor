@@ -1,5 +1,6 @@
-﻿@model IEnumerable<WebNoiThatReal.Models.Product>
+﻿@model PagedList.IPagedList<WebNoiThatReal.Models.Product>
 
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Sanphamlayout.cshtml";
@@ -38,6 +39,9 @@
             </div>
         }
     </div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
 
 

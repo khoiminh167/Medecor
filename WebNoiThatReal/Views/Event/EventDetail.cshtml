@@ -5,14 +5,64 @@
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
-<h2>@Model.EventName</h2>
-<img src="@Url.Content(Model.ImageUrl)" alt="Image of @Model.Title" />
-<p>@Model.Title</p>
-<p>@Model.EventDate</p>
+<div class="content-container">
+    <div class="image-container">
+        <img src="@Url.Content(Model.ImageUrl)" alt="Image of @Model.Title" />
+    </div>
+    <h2>@Model.EventName</h2>
+    <p>@Model.Title</p>
+    <p>@Model.EventDate</p>
 
-
-<div class="event-description">
-    <p><strong>Mô tả:</strong></p>
-    @Html.Raw(Model.Description)
+    <div class="event-description">
+        <p><strong>Mô tả:</strong></p>
+        @Html.Raw(Model.Description)
+    </div>
 </div>
+
+<style>
+    /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của phần tử chứa */
+    .image-container {
+        width: 100%;
+        max-width: 1000px; /* Giới hạn kích thước tối đa của phần tử chứa ảnh */
+        margin: 0 auto 15px auto; /* Căn giữa và khoảng cách dưới ảnh */
+    }
+
+        .image-container img {
+            width: 100%;
+            height: auto; /* Giữ tỷ lệ khung hình của ảnh */
+            display: block; /* Loại bỏ khoảng trắng dưới ảnh */
+            max-width: 1000px;
+        }
+
+    /* Đảm bảo phần tử chứa có cùng kích thước cho tất cả các phần tử */
+    .content-container {
+        width: 100%;
+        max-width: 1000px; /* Giới hạn chiều rộng tối đa */
+        margin: 0 40px; /* Căn giữa phần tử chứa */
+        padding: 0 40px; /* Lề hai bên của phần tử chứa */
+        box-sizing: border-box; /* Đảm bảo padding không làm tăng tổng chiều rộng */
+    }
+
+        .content-container h2,
+        .content-container p {
+            margin: 0 0 15px 0; /* Khoảng cách dưới cho tiêu đề và đoạn văn */
+        }
+
+    .event-description {
+        text-align: justify;
+        padding: 0; /* Không cần padding thêm cho mô tả */
+    }
+
+        .event-description p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .event-description img {
+            max-width: 100%; /* Đảm bảo các hình ảnh trong mô tả không vượt quá chiều rộng của phần tử chứa */
+            height: auto; /* Giữ tỷ lệ khung hình của hình ảnh */
+            display: block; /* Loại bỏ khoảng trắng dưới hình ảnh */
+            margin: 0 auto; /* Căn giữa hình ảnh nếu cần */
+        }
+</style>
 
