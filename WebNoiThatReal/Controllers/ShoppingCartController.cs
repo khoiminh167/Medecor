@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebNoiThatReal.Models;
+using Microsoft.AspNet.SignalR;
 
 namespace WebNoiThatReal.Controllers
 {
@@ -136,9 +137,12 @@ namespace WebNoiThatReal.Controllers
         }
 
         database.SaveChanges();
-        cart.ClearCart();
-        return RedirectToAction("CheckOut_Success", "ShoppingCart");
-    }
+                // Gọi SignalR để thông báo đơn hàng mới
+                OrderHub.NotifyNewOrder();
+
+                cart.ClearCart();
+                return RedirectToAction("CheckOut_Success", "ShoppingCart");
+            }
     catch (Exception ex)
     {
         // Ghi log lỗi nếu cần
