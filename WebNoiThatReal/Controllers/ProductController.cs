@@ -13,7 +13,7 @@ namespace WebNoiThatReal
 {
     public class ProductController : Controller
     {
-        medecorEntities db = new medecorEntities();
+        WebNoiThatRealEntities db = new WebNoiThatRealEntities();
         // GET: Product
 
         public ActionResult Index(string Category, int? page)
@@ -53,19 +53,36 @@ namespace WebNoiThatReal
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(Product pro)
+        public ActionResult Create(Product pro, IEnumerable<HttpPostedFileBase> UploadImages)
         {
             List<Category> list = db.Categories.ToList();
             try
             {
-                if (pro.UploadImage != null)
+                // Xử lý từng hình ảnh được tải lên
+                if (UploadImages != null && UploadImages.Any())
                 {
-                    string filename = Path.GetFileNameWithoutExtension(pro.UploadImage.FileName);
-                    string extent = Path.GetExtension(pro.UploadImage.FileName);
-                    filename = filename + extent;
-                    pro.ImagePro = "~/Content/Images/" + filename;
-                    pro.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), filename));
+                    foreach (var file in UploadImages)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            // Lưu ảnh vào thư mục
+                            string filename = Path.GetFileNameWithoutExtension(file.FileName);
+                            string extent = Path.GetExtension(file.FileName);
+                            filename = filename + extent;
+                            string path = "~/Content/Images/" + filename;
+                            file.SaveAs(Server.MapPath(path));
+
+                            // Tạo đối tượng ProductImage và thêm vào cơ sở dữ liệu
+                            ProductImage img = new ProductImage
+                            {
+                                ProductID = pro.ProductID,
+                                ImagePath = path
+                            };
+                            pro.ProductImages.Add(img);
+                        }
+                    }
                 }
+
                 ViewBag.listCategory = new SelectList(list, "IDCate", "NameCate", 1);
                 db.Products.Add(pro);
                 db.SaveChanges();
@@ -73,9 +90,11 @@ namespace WebNoiThatReal
             }
             catch
             {
-                return View();
+                return View(pro);
             }
         }
+
+
         public ActionResult Danhsachsp()
         {
             return View(db.Products.ToList());
@@ -95,10 +114,30 @@ namespace WebNoiThatReal
         [ValidateInput(false)]
         public ActionResult Edit(int id, Product pro)
         {
-            db.Entry(pro).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
+            var existingProduct = db.Products.FirstOrDefault(p => p.ProductID == id);
+            if (existingProduct != null)
+            {
+                existingProduct.NamePro = pro.NamePro;
+                existingProduct.DecriptionPro = pro.DecriptionPro;
+                existingProduct.IDCate = pro.IDCate;
+                existingProduct.Price = pro.Price;
+
+                if (pro.UploadImage != null)
+                {
+                    string filename = Path.GetFileNameWithoutExtension(pro.UploadImage.FileName);
+                    string extension = Path.GetExtension(pro.UploadImage.FileName);
+                    filename = filename + extension;
+                    existingProduct.ImagePro = "~/Content/Images/" + filename;
+                    pro.UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Content/Images/"), filename));
+                }
+
+                db.Entry(existingProduct).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Danhsachsp");
         }
+
         public ActionResult Delete(int id)
         {
             return View(db.Products.Where(s => s.ProductID == id).FirstOrDefault());

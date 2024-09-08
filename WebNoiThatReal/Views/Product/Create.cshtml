@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/Mainlayout.cshtml";
-
 }
 <link href="~/Content/SPStyle.css" rel="stylesheet" />
 <h2 style="padding-top:50px;margin-left:350px">Tạo sản phẩm</h2>
@@ -11,47 +10,36 @@
 @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table class="table-bordered" style="margin-left:350px">
+        <!-- Các trường thông tin sản phẩm khác -->
         <tr>
             <td>@Html.LabelFor(m => m.NamePro)</td>
             <td>@Html.EditorFor(m => m.NamePro)</td>
         </tr>
         <tr>
-
             <td>@Html.LabelFor(m => m.Price)</td>
             <td>@Html.EditorFor(m => m.Price)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.Category)</td>
-            <td>
-
-                @Html.DropDownListFor(m => m.IDCate, (SelectList)ViewBag.listCategory)
-
-            </td>
+            <td>@Html.DropDownListFor(m => m.IDCate, (SelectList)ViewBag.listCategory)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(m => m.DecriptionPro)</td>
-            <td>
-                @Html.TextAreaFor(m => m.DecriptionPro, new { @class = "ckeditor" })
-            </td>
+            <td>@Html.TextAreaFor(m => m.DecriptionPro, new { @class = "ckeditor" })</td>
         </tr>
 
-
-
+        <!-- Phần thêm hình ảnh -->
         <tr>
-            <td>@Html.LabelFor(m => m.ImagePro)</td>
+            <td>Upload Images</td>
             <td>
-                <img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" />
+                <input type="file" name="UploadImages" multiple />
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="file" name="UploadImage" onchange="ChangeImage(this, document.getElementById('previewImg'))" />
                 <input type="submit" value="Tạo mới" />
-
             </td>
         </tr>
-
-
     </table>
 }
 
@@ -59,3 +47,27 @@
 <script>
     CKEDITOR.replace('DecriptionPro');
 </script>
+
+
+<script>
+    function ChangeImages(input) {
+        var previewContainer = document.getElementById('previewImages');
+        previewContainer.innerHTML = ''; // Clear previous previews
+        if (input.files) {
+            Array.from(input.files).forEach(file => {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.height = '150px';
+                    img.style.width = '150px';
+                    img.style.margin = '10px';
+                    previewContainer.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    }
+</script>
+
+

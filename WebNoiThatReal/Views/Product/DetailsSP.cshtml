@@ -6,9 +6,17 @@
 }
 
 <div class="product-details">
-    <!-- Hình ảnh sản phẩm -->
-    <div class="product-image">
-        <img src="@Url.Content(Model.ImagePro)" alt="Image of @Model.NamePro" />
+    <!-- Danh sách hình ảnh sản phẩm -->
+    <div class="thumbnails">
+        @foreach (var image in Model.ProductImages)
+        {
+            <img src="@Url.Content(image.ImagePath)" alt="Thumbnail of @Model.NamePro" class="thumbnail-image" />
+        }
+    </div>
+
+    <!-- Hình ảnh chính -->
+    <div class="main-image-container">
+        <img id="main-image" src="@Url.Content(Model.ProductImages.FirstOrDefault()?.ImagePath ?? "~/Content/Images/hinhsp/add.jpg")" alt="Main image of @Model.NamePro" class="main-image" />
     </div>
 
     <!-- Thông tin sản phẩm -->
@@ -29,12 +37,10 @@
                 <i class="fas fa-shopping-cart"></i> Thêm vào giỏ
             </button>
         </form>
-
-
-
-
     </div>
 </div>
+
+
 
 <!-- Mô tả sản phẩm -->
 <div class="product-description">
@@ -43,6 +49,44 @@
 </div>
 
 <style>
+    .product-details {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-top: 70px;
+        padding-right: 150px;
+    }
+
+    .thumbnails {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+    }
+
+    .thumbnail-image {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 5px;
+    }
+
+        .thumbnail-image:hover {
+            border: 2px solid #007bff;
+        }
+
+    .main-image-container {
+        margin-right: 50px;
+    }
+
+    .main-image {
+        border-radius: 5px;
+        width: 400px;
+        height: auto;
+    }
+
+
     .product-details {
         display: flex;
         flex-direction: row; /* Sắp xếp các phần tử theo chiều ngang */
@@ -61,9 +105,9 @@
             width: 400px; /* Chiều rộng của hình ảnh */
             height: auto; /* Chiều cao tự động để giữ tỷ lệ */
         }
+
     .product-description {
         text-align: left;
-        
         padding-right: 250px;
     }
 
@@ -162,9 +206,51 @@
             margin: 0;
         }
 
+    .product-description {
+        text-align: justify;
+        padding: 0; /* Không cần padding thêm cho mô tả */
+        max-width:1000px;
+    }
+
+        .product-description p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .product-description img {
+            max-width: 100%; /* Đảm bảo các hình ảnh trong mô tả không vượt quá chiều rộng của phần tử chứa */
+            
+            height: auto; /* Giữ tỷ lệ khung hình của hình ảnh */
+            display: block; /* Loại bỏ khoảng trắng dưới hình ảnh */
+            margin: 0 auto; /* Căn giữa hình ảnh nếu cần */
+        }
+
+
+
+
+
+
 </style>
 
 <script>
+
+
+    // Lấy tất cả các thumbnail
+    const thumbnails = document.querySelectorAll('.thumbnail-image');
+    const mainImage = document.getElementById('main-image');
+
+    // Lặp qua các thumbnail để thêm sự kiện click
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', function () {
+            // Thay đổi src của ảnh chính khi click vào thumbnail
+            mainImage.src = this.src;
+        });
+    });
+
+    // Các chức năng tăng/giảm số lượng sản phẩm
+    
+
+
     document.getElementById('decrease').addEventListener('click', function () {
         var quantityInput = document.getElementById('quantity');
         var currentValue = parseInt(quantityInput.value, 10);

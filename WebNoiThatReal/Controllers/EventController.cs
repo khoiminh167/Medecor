@@ -13,7 +13,7 @@ namespace WebNoiThatReal.Controllers
 {
     public class EventController : Controller
     {
-        medecorEntities db = new medecorEntities();
+        WebNoiThatRealEntities db = new WebNoiThatRealEntities();
         // GET: Event
         public ActionResult Index()
         {

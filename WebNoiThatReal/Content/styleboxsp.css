@@ -1,72 +1,83 @@
-﻿.row {
-    margin-left: -50px; /* Negative margin to reduce space between columns */
-    margin-right: 0px; /* Negative margin to reduce space between columns */
+﻿
+
+a {
+    color: black; /* Thay đổi màu chữ thành màu đen */
+    text-decoration: none; /* Loại bỏ gạch chân của link */
 }
 
-.col-sm-6, .col-md-4, .col-lg-3 {
-    padding-left: 10px; /* Adjust the padding for column spacing */
-    padding-right: 0px; /* Adjust the padding for column spacing */
-}
+    a:hover {
+        color: #333; /* Màu chữ khi hover, có thể tùy chỉnh theo ý muốn */
+        text-decoration: none; /* Thêm gạch chân khi hover nếu cần */
+    }
+
+    a:visited {
+        color: black; /* Màu chữ cho các liên kết đã thăm */
+    }
+
+    a:active {
+        color: black; /* Màu chữ cho các liên kết đang được nhấp */
+    }
+
+
 
 .product-box {
     position: relative;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 0px;
     overflow: hidden;
-    padding: 10px;
-    margin-bottom: 20px; /* Khoảng cách dưới mỗi hộp sản phẩm */
-    transition: transform 0.3s ease;
+    
+    margin-bottom: 20px;
     width: 100%;
-    height: 300px; /* Chiều cao cố định của mỗi hộp sản phẩm */
     max-width: 280px;
     display: flex;
     flex-direction: column;
-    
+    height: 400px; /* Chiều cao cố định của hộp sản phẩm */
 }
 
     .product-box img {
-        border-radius: 5px;
+        border-radius: 0px;
         width: 100%;
-        height: 150px; /* Chiều cao hình ảnh cố định để phù hợp với chiều cao của hộp */
-        object-fit: cover; /* Đảm bảo hình ảnh không bị kéo dãn hoặc bị biến dạng */
+        height: 250px; /* Chiều cao của hình ảnh chính và phụ */
+        
+        transition: opacity 0.5s ease; /* Hiệu ứng chuyển từ từ */
     }
 
-    .product-box p {
-        margin: 10px 0;
-        font-family: Bahnschrift;
-        font-size: medium;
-        flex: 1; /* Để nội dung của <p> không chiếm quá nhiều không gian */
-    }
-    p.price-pro {
-        align-content:flex-end;
-        color:darkred;
-    }
+.main-image {
+    z-index: 1; /* Đảm bảo ảnh chính luôn nằm trên ảnh phụ */
+    border-radius: 0px;
+}
 
-.product-overlay {
+.second-image {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.5); /* Tăng độ mờ của lớp phủ */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    opacity: 0; /* Ẩn ảnh phụ ban đầu */
+    z-index: 0; /* Đặt thấp hơn ảnh chính */
+    transition: opacity 0.5s ease; /* Hiệu ứng chuyển từ từ */
 }
 
-.product-box:hover .product-overlay {
-    opacity: 1;
+.product-box:hover .second-image {
+    opacity: 1; /* Ảnh phụ hiện ra khi hover */
 }
 
-.product-box:hover {
-    transform: scale(1.05);
+.product-name {
+    font-size: 15px;
+    text-align: left; /* Căn trái tên sản phẩm */
+    margin-top: 10px; /* Đặt khoảng cách từ trên xuống */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Giới hạn hiển thị 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị "..." khi tràn văn bản */
 }
 
-.btn-view-more {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+.price-pro {
+    color: #f94c43;
+    text-align: left; /* Căn trái giá sản phẩm */
+    margin-top: 5px; /* Đặt khoảng cách từ trên xuống */
 }
+
+

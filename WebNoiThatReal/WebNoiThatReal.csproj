@@ -282,6 +282,9 @@
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\OrderHub.cs" />
+    <Compile Include="Models\Appointment.cs">
+      <DependentUpon>DBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>DBEntities.tt</DependentUpon>
@@ -318,6 +321,9 @@
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
+      <DependentUpon>DBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductImage.cs">
       <DependentUpon>DBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -365,6 +371,7 @@
     <Content Include="Content\logo.png" />
     <Content Include="Content\medecor.jpg" />
     <Content Include="Content\MyStyle.css" />
+    <Content Include="Content\notification.mp3" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />

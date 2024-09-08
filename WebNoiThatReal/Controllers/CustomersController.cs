@@ -9,7 +9,7 @@ namespace WebNoiThatReal.Controllers
 {
     public class CustomersController : Controller
     {
-        medecorEntities database = new medecorEntities();
+        WebNoiThatRealEntities database = new WebNoiThatRealEntities();
         public ActionResult Index()
         {
             return View();

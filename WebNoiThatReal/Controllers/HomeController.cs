@@ -13,7 +13,7 @@ namespace WebNoiThatReal.Controllers
 {
     public class HomeController : Controller
     {
-        medecorEntities db = new medecorEntities();
+        WebNoiThatRealEntities db = new WebNoiThatRealEntities();
         public ActionResult Trangchu()
         {
             // Lấy danh sách sản phẩm

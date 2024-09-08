@@ -13,10 +13,10 @@ namespace WebNoiThatReal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class medecorEntities : DbContext
+    public partial class WebNoiThatRealEntities : DbContext
     {
-        public medecorEntities()
-            : base("name=medecorEntities")
+        public WebNoiThatRealEntities()
+            : base("name=WebNoiThatRealEntities")
         {
         }
     
@@ -25,12 +25,14 @@ namespace WebNoiThatReal.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Collection> Collections { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<OrderPro> OrderProes { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
     }
 }

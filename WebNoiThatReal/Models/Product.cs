@@ -19,6 +19,7 @@ namespace WebNoiThatReal.Models
         public Product()
         {
             this.OrderDetails = new HashSet<OrderDetail>();
+            this.ProductImages = new HashSet<ProductImage>(); // Khởi tạo ICollection ProductImages
             ImagePro = "~/Content/Images/hinhsp/add.jpg";
         }
 
@@ -35,5 +36,6 @@ namespace WebNoiThatReal.Models
 
         public virtual Category Category { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; } // Thêm thuộc tính này
     }
 }

@@ -15,34 +15,69 @@
     <div class="row">
         @foreach (var pro in Model)
         {
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="product-box">
-                    <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">
-                        <img src="@Url.Content(pro.ImagePro)" alt="Image of @pro.NamePro" />
-                    </a>
-                    <p>
-                        <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">@Html.DisplayFor(m => pro.NamePro)</a>
-                    </p>
-                    <p class="price-pro">
-                        @string.Format("{0:N0}", pro.Price) Đ
-                    </p>
-                    <div class="product-overlay">
-                        <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">
-                            <input type="hidden" name="id" value="@pro.ProductID" />
-                            <input type="hidden" name="quantity" value="1" />
-                            <button type="submit" class="btn-view-more">
-                                <i class="fas fa-info-circle"></i> Xem thêm
-                            </button>
-                        </a>
-                    </div>
-                </div>
+            var images = pro.ProductImages.ToList();
+            var firstImage = images.FirstOrDefault()?.ImagePath ?? "~/Content/Images/hinhsp/add.jpg";
+            var secondImage = images.Skip(1).FirstOrDefault()?.ImagePath; // Lấy ảnh thứ 2 nếu có
+
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            
+            <div class="product-box">
+                <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">
+                    <!-- Ảnh chính -->
+                    <img src="@Url.Content(firstImage)" alt="Image of @pro.NamePro" class="main-image" />
+                    <!-- Ảnh phụ, xuất hiện khi hover -->
+                    @if (!string.IsNullOrEmpty(secondImage))
+                    {
+                        <img src="@Url.Content(secondImage)" alt="Second image of @pro.NamePro" class="second-image" />
+                    }
+                </a>
+                <p class="product-name">
+                    <a href="@Url.Action("DetailsSP", "Product", new { id = pro.ProductID })">@Html.DisplayFor(m => pro.NamePro)</a>
+                </p>
+                
+
+                <p class="price-pro">
+                    @string.Format("{0:N0}", pro.Price) đ
+                </p>
+                
             </div>
+
+        </div>
         }
     </div>
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy tất cả các product box
+        const productBoxes = document.querySelectorAll('.product-box');
+
+        productBoxes.forEach(box => {
+            const img = box.querySelector('.product-img');
+            const secondImage = box.getAttribute('data-second-image');
+
+            // Nếu có ảnh thứ 2 thì xử lý hover
+            if (secondImage && secondImage !== 'null') {
+                const originalSrc = img.src;
+
+                // Thay đổi ảnh khi hover vào
+                box.addEventListener('mouseenter', () => {
+                    img.src = secondImage.startsWith("~") ? secondImage.replace("~", "") : secondImage;
+                });
+
+                // Trở lại ảnh ban đầu khi hover ra
+                box.addEventListener('mouseleave', () => {
+                    img.src = originalSrc;
+                });
+            }
+        });
+    });
+
+</script>
+
 
 
 <footer>
